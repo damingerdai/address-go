@@ -1,11 +1,8 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import "damingerdai/address/routes"
 
 func main() {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello, Geektutu")
-	})
+	r := routes.NewRouter()
 	r.Run(":9999")
 }
