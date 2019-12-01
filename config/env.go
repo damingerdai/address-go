@@ -17,7 +17,7 @@ type Env struct {
 
 func New() *Env {
 	env := &Env{}
-
+	env.loadConfig()
 	return env
 }
 

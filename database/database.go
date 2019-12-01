@@ -23,7 +23,7 @@ func createDataSourceName(conf *config.DBConfig) (dataSourceName string) {
 	b.WriteString("tcp(")
 	b.WriteString(conf.Host)
 	b.WriteString(":")
-	b.WriteString(conf.Password)
+	b.WriteString(conf.Port)
 	b.WriteString(")")
 	b.WriteString("/")
 	b.WriteString(conf.Dbname)
