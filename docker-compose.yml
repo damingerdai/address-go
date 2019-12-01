@@ -5,8 +5,10 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: QBwNk5GN5xfB
-      MYSQL_DATABASE: giligili
+      MYSQL_ROOT_PASSWORD: 267552
+      MYSQL_DATABASE: address
+      MYSQL_USER: daming
+      MYSQL_PASSWORD: 267552
     ports:
       - "3306:3306"
   redis:
