@@ -4,6 +4,8 @@ import (
 	"damingerdai/address/config"
 	"damingerdai/address/database"
 	"damingerdai/address/models"
+
+	"github.com/pkg/errors"
 )
 
 var conf *config.DBConfig
@@ -50,5 +52,26 @@ func ListProvinces() []*models.Province {
 	}
 
 	return result
+
+}
+
+func GetProvince(id int) (*models.Province, error) {
+	conn := database.GetConnection(conf)
+	// defer conn.Close()
+
+	rows := conn.QueryRow("SELECT _id, name, province_id FROM province where _id = ?", id)
+
+	var provinceID int
+	var name string
+	err := rows.Scan(&id, &name, &provinceID)
+	if err != nil {
+		return nil, errors.Wrap(err, "db error")
+	}
+	province := models.Province{
+		Id:         id,
+		Name:       name,
+		ProvinceId: provinceID,
+	}
+	return &province, nil
 
 }
