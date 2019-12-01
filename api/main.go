@@ -1,6 +1,7 @@
 package api
 
 import (
+	service "damingerdai/address/services"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -32,4 +33,8 @@ func CreateToken(c *gin.Context) {
 		c.JSON(200, message)
 	}
 
+}
+
+func ListProvince(c *gin.Context) {
+	c.JSON(200, service.ListProvince())
 }

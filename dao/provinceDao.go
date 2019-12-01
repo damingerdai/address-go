@@ -30,7 +30,7 @@ func ListProvinces() []*models.Province {
 	for i := range values {
 		scanArgs[i] = &values[i]
 	}
-	result := make([]*models.Province, 32)
+	result := make([]*models.Province, 0, 32)
 	for rows.Next() {
 		//将行数据保存到record字典
 		var id, provinceId int
