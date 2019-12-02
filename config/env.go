@@ -15,10 +15,15 @@ type Env struct {
 	sqlDB   string
 }
 
+var e *Env
+
 func New() *Env {
-	env := &Env{}
-	env.loadConfig()
-	return env
+	if e == nil {
+		e = &Env{}
+		e.loadConfig()
+	}
+
+	return e
 }
 
 func (env *Env) loadConfig() {

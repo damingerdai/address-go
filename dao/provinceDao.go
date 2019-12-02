@@ -1,25 +1,20 @@
 package dao
 
 import (
-	"damingerdai/address/config"
 	"damingerdai/address/database"
 	"damingerdai/address/models"
+	"database/sql"
 
 	"github.com/pkg/errors"
 )
 
-var conf *config.DBConfig
+var conn *sql.DB
 
 func init() {
-	env := config.New()
-	a := config.NewDBConfig(env)
-	conf = &a
+	conn = database.GetDataSource()
 }
 
 func ListProvinces() []*models.Province {
-	conn := database.GetConnection(conf)
-	defer conn.Close()
-
 	rows, err := conn.Query("SELECT _id, name, province_id FROM province")
 	if err != nil {
 		panic(err.Error())
@@ -56,9 +51,6 @@ func ListProvinces() []*models.Province {
 }
 
 func GetProvince(id int) (*models.Province, error) {
-	conn := database.GetConnection(conf)
-	// defer conn.Close()
-
 	rows := conn.QueryRow("SELECT _id, name, province_id FROM province where _id = ?", id)
 
 	var provinceID int

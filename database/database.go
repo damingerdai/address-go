@@ -11,30 +11,32 @@ import (
 )
 
 var (
-	conn *sql.DB
+	conn           *sql.DB
+	dataSourceName string
 )
 
-func createDataSourceName(conf *config.DBConfig) (dataSourceName string) {
-	var b strings.Builder
-	b.WriteString(conf.User)
-	b.WriteString(":")
-	b.WriteString(conf.Password)
-	b.WriteString("@")
-	b.WriteString("tcp(")
-	b.WriteString(conf.Host)
-	b.WriteString(":")
-	b.WriteString(conf.Port)
-	b.WriteString(")")
-	b.WriteString("/")
-	b.WriteString(conf.Dbname)
-	b.WriteString("?charset=utf8&parseTime=True&loc=Local")
+func createDataSourceName(conf *config.DBConfig) string {
+	if dataSourceName == "" {
+		var b strings.Builder
+		b.WriteString(conf.User)
+		b.WriteString(":")
+		b.WriteString(conf.Password)
+		b.WriteString("@")
+		b.WriteString("tcp(")
+		b.WriteString(conf.Host)
+		b.WriteString(":")
+		b.WriteString(conf.Port)
+		b.WriteString(")")
+		b.WriteString("/")
+		b.WriteString(conf.Dbname)
+		b.WriteString("?charset=utf8&parseTime=True&loc=Local")
+		dataSourceName = b.String()
+	}
 
-	dataSourceName = b.String()
-
-	return
+	return dataSourceName
 }
 
-func createConnection(conf *config.DBConfig) (*sql.DB, error) {
+func CreateDataSource(conf *config.DBConfig) (*sql.DB, error) {
 	driverName := "mysql"
 	dataSourceName := createDataSourceName(conf)
 	db, err := sql.Open(driverName, dataSourceName)
@@ -45,16 +47,23 @@ func createConnection(conf *config.DBConfig) (*sql.DB, error) {
 		return nil, errors.Wrap(err, "sql.Connect(driverName, dataSourceName)")
 	}
 
+	err = db.Ping()
+	if err != nil {
+		log.Println(err)
+		log.Fatal("Something wrong with created DB connection")
+		return nil, errors.Wrap(err, "sql.Connect(driverName, dataSourceName)")
+	}
+
 	return db, nil
 }
 
-func GetConnection(conf *config.DBConfig) *sql.DB {
-	if conn == nil {
-		log.Println("No db connection, create a new one")
-		conn, _ = createConnection(conf)
-		log.Println("Done")
-	} else {
-		log.Println("db instance is created, use existing one")
+func GetDataSource() *sql.DB {
+	conf := config.GetDBConfig()
+
+	db, err := CreateDataSource(conf)
+	if err != nil {
+		panic(err)
 	}
-	return conn
+
+	return db
 }

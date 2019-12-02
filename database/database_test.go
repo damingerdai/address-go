@@ -2,7 +2,6 @@ package database
 
 import (
 	"damingerdai/address/config"
-	"fmt"
 	"testing"
 )
 
@@ -18,15 +17,17 @@ func init() {
 	}
 }
 
-func TestGetConnection(t *testing.T) {
-	fmt.Println(conf)
+func TestCreateDataSource(t *testing.T) {
 	if conf == nil {
 		t.Error("fail to init conf")
 	}
 
-	conn := GetConnection(conf)
-	defer conn.Close()
-	if conn == nil {
-		t.Error("fail to ge connection from db")
+	db, err := CreateDataSource(conf)
+	if err != nil {
+		t.Error("fail to get db")
+	}
+
+	if err = db.Ping(); err != nil {
+		t.Error("fail to ping db")
 	}
 }
