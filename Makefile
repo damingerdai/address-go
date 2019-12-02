@@ -1,8 +1,8 @@
-clean:
-	rm main || :
-
 build: clean
-	go build main.go
+	go build -o cmd/main main.go
 
 run: build
 	./main 
+.PHONY: clean
+clean:
+	rm main || :
