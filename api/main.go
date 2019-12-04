@@ -10,11 +10,6 @@ import (
 
 var hmacSampleSecret = []byte("dam")
 
-func Ping(c *gin.Context) {
-
-	c.JSON(200, "Pong")
-}
-
 func CreateToken(c *gin.Context) {
 	username := c.GetHeader("username")
 	password := c.GetHeader("password")
