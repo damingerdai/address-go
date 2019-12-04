@@ -3,6 +3,9 @@ services:
   mysql:
     container_name: mysql
     image: mysql:5.7
+    volumes:
+      - address-go:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 267552
@@ -18,3 +21,6 @@ services:
   #   restart: always
   #   ports:
   #     - "6379:6379"
+volumes:
+  address-go:
+    external: true
