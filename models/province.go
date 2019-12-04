@@ -5,9 +5,9 @@ import "strings"
 import "strconv"
 
 type Province struct {
-	Id         int
-	Name       string
-	ProvinceId int
+	Id         int    `json:"id"`
+	Name       string `json:"name"`
+	ProvinceId int    `json:"provinceId"`
 }
 
 func (province *Province) String() string {
