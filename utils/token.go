@@ -2,6 +2,7 @@ package token
 
 import (
 	"damingerdai/address/models"
+	"fmt"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )
@@ -15,4 +16,14 @@ func CreateToken(user *models.User, secretKey []byte, expiresAt int64) (tokenStr
 	tokenString, err = token.SignedString(secretKey)
 
 	return
+}
+
+func VerifyToken(token string, secretKey []byte) bool {
+	t, _ := jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
+		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("Unexpected signing method: %v", t.Header["alg"])
+		}
+		return secretKey, nil
+	})
+	return t.Valid
 }
