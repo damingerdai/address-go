@@ -19,6 +19,9 @@ func CreateToken(user *models.User, secretKey []byte, expiresAt int64) (tokenStr
 }
 
 func VerifyToken(token string, secretKey []byte) bool {
+	if len(token) == 0 {
+		return false
+	}
 	t, _ := jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
 		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", t.Header["alg"])

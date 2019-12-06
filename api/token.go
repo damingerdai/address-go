@@ -14,7 +14,7 @@ func CreateToken(c *gin.Context) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": username,
 		"password": password,
-		"exp":      time.Date(2015, 10, 10, 12, 0, 0, 0, time.UTC).Unix(),
+		"exp":      time.Date(2020, 10, 10, 12, 0, 0, 0, time.UTC).Unix(),
 	})
 
 	message, err := token.SignedString(hmacSampleSecret)
