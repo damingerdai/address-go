@@ -1,18 +1,10 @@
 package dao
 
 import (
-	"damingerdai/address/database"
 	"damingerdai/address/models"
-	"database/sql"
 
 	"github.com/pkg/errors"
 )
-
-var conn *sql.DB
-
-func init() {
-	conn = database.GetDataSource()
-}
 
 func ListProvinces() []*models.Province {
 	rows, err := conn.Query("SELECT _id, name, province_id FROM province")
