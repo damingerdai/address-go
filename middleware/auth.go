@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 
 	"damingerdai/address/api"
@@ -14,7 +13,6 @@ func ValidateToken() gin.HandlerFunc {
 			c.Next()
 		} else {
 			tokenStr := c.GetHeader("token")
-			fmt.Println(tokenStr)
 			if ok := token.VerifyToken(tokenStr, api.GetHmacSampleSecret()); ok {
 				c.Next()
 			} else {
