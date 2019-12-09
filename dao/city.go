@@ -10,12 +10,6 @@ func ListCities() []*models.City {
 		panic(err.Error())
 	}
 	defer rows.Close()
-	columns, _ := rows.Columns()
-	scanArgs := make([]interface{}, len(columns))
-	values := make([]interface{}, len(columns))
-	for i := range values {
-		scanArgs[i] = &values[i]
-	}
 	result := make([]*models.City, 0, 343)
 	for rows.Next() {
 		var id, cityId int

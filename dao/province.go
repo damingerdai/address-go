@@ -12,13 +12,6 @@ func ListProvinces() []*models.Province {
 		panic(err.Error())
 	}
 	defer rows.Close()
-	//构造scanArgs、values两个数组，scanArgs的每个值指向values相应值的地址
-	columns, _ := rows.Columns()
-	scanArgs := make([]interface{}, len(columns))
-	values := make([]interface{}, len(columns))
-	for i := range values {
-		scanArgs[i] = &values[i]
-	}
 	result := make([]*models.Province, 0, 32)
 	for rows.Next() {
 		//将行数据保存到record字典
