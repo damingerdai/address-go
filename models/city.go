@@ -13,11 +13,11 @@ type City struct {
 
 func (city *City) String() string {
 	var b strings.Builder
-	b.WriteString("Province[id=")
+	b.WriteString("City[id=")
 	b.WriteString(strconv.Itoa(city.Id))
 	b.WriteString(",name=")
 	b.WriteString(city.Name)
-	b.WriteString(",ProvinceId=")
+	b.WriteString(",CityId=")
 	b.WriteString(strconv.Itoa(city.CityId))
 	b.WriteString("]")
 	return b.String()

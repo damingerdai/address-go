@@ -17,6 +17,7 @@ func NewRouter() *gin.Engine {
 		v1.GET("provinces", api.ListProvinces)
 		v1.GET("province/:id", api.GetProvince)
 		v1.GET("cities", api.ListCities)
+		v1.GET("city/:id", api.GetCity)
 	}
 
 	return r
