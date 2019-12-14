@@ -18,6 +18,8 @@ func NewRouter() *gin.Engine {
 		v1.GET("province/:id", api.GetProvince)
 		v1.GET("cities", api.ListCities)
 		v1.GET("city/:id", api.GetCity)
+		v1.GET("user/:id", api.GetUser)
+		v1.POST("user", api.CreateUser)
 	}
 
 	return r
