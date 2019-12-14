@@ -1,4 +1,4 @@
-package token
+package utils
 
 import (
 	"damingerdai/address/models"
