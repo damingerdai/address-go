@@ -1,6 +1,9 @@
 package dao
 
-import "errors"
+import (
+	"damingerdai/address/models"
+	"errors"
+)
 
 func CreateUser(id int64, username, password string) (err error) {
 	sql := "INSERT user SET id = ? ,name = ?, password = ?"
@@ -20,4 +23,15 @@ func CreateUser(id int64, username, password string) (err error) {
 		err = errors.New("fail to create a user")
 	}
 	return
+}
+
+func GetUserById(id int64) (*models.User, error) {
+	rows := conn.QueryRow("SELECT name, password FROM user WHERE id = ?", id)
+	var name, password string
+	err := rows.Scan(&name, &password)
+	if err != nil {
+		return nil, err
+	}
+	user := models.User{id, name, password}
+	return &user, nil
 }
