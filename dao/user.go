@@ -35,3 +35,24 @@ func GetUserById(id int64) (*models.User, error) {
 	user := models.User{id, name, password}
 	return &user, nil
 }
+
+func ListUsers() ([]*models.User, error) {
+	rows, err := conn.Query("SELECT id, name, password FROM user")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	users := make([]*models.User, 0)
+	for rows.Next() {
+		var id int64
+		var name, password string
+		err = rows.Scan(&id, &name, &password)
+		if err != nil {
+			panic(err.Error())
+		}
+		user := models.User{id, name, password}
+		users = append(users, &user)
+	}
+
+	return users, nil
+}
