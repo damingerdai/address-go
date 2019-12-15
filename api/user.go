@@ -17,6 +17,11 @@ func GetUser(c *gin.Context) {
 
 func CreateUser(c *gin.Context) {
 	user := models.User{}
-	service.CreateUser(&user)
-	c.JSON(200, user)
+	c.BindJSON(&user)
+	if len(user.Username) == 0 || len(user.Password) == 0 {
+		c.AbortWithStatusJSON(403, "Bad Request")
+	} else {
+		service.CreateUser(&user)
+		c.JSON(200, user)
+	}
 }
