@@ -3,6 +3,7 @@ package dao
 import (
 	"damingerdai/address/models"
 	"errors"
+	"strings"
 )
 
 func CreateUser(id int64, username, password string) (err error) {
@@ -55,4 +56,39 @@ func ListUsers() ([]*models.User, error) {
 	}
 
 	return users, nil
+}
+
+func HasUser(user *models.User) (bool, error) {
+	sql := "SELECT count(id) FROM user where "
+	conditions := make([]string, 0, 3)
+	params := make([]interface{}, 0, 3)
+	if user.ID > 0 {
+		conditions = append(conditions, " id = ? ")
+		params = append(params, user.ID)
+	}
+	if len(user.Username) > 0 {
+		conditions = append(conditions, " username = ? ")
+		params = append(params, user.Username)
+	}
+	if len(user.Password) > 0 {
+		conditions = append(conditions, " password = ? ")
+		params = append(params, user.Password)
+	}
+	rows := conn.QueryRow(sql+sliceConditions(&conditions), params)
+	var count int
+	rows.Scan(&count)
+	return count > 0, nil
+
+}
+
+func sliceConditions(conditions *[]string) string {
+	var b strings.Builder
+	for i, v := range *conditions {
+		if i != 0 {
+			b.WriteString(" and ")
+		}
+		b.WriteString(v)
+	}
+
+	return b.String()
 }
