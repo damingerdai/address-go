@@ -25,3 +25,20 @@ func TestGetUserById(t *testing.T) {
 	}
 
 }
+
+func TestHasUser(t *testing.T) {
+	users, err := ListUsers()
+	if err != nil {
+		t.Error(err.Error())
+	}
+	for _, v := range users {
+		b, err := HasUser(v)
+		if err != nil {
+			t.Error(err.Error())
+			break
+		}
+		if b != true {
+			t.Errorf("no user id : %d", v.ID)
+		}
+	}
+}

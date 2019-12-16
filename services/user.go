@@ -26,3 +26,7 @@ func GetUser(id string) (*models.User, error) {
 	}
 	return dao.GetUserById(n)
 }
+
+// func HasUser(user *models.User) (bool, error) {
+
+// }
