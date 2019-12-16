@@ -11,18 +11,30 @@ func CreateToken(c *gin.Context) {
 	username := c.GetHeader("username")
 	password := c.GetHeader("password")
 
+	if len(username) == 0 {
+		c.AbortWithStatusJSON(400, "username is required")
+		return
+	}
+
+	if len(password) == 0 {
+		c.AbortWithStatusJSON(400, "password is required")
+		return
+	}
+
+	exp := time.Now().Local().Add(time.Hour * time.Duration(1))
+
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": username,
 		"password": password,
-		"exp":      time.Date(2020, 10, 10, 12, 0, 0, 0, time.UTC).Unix(),
+		"exp":      exp.Unix(),
 	})
 
 	message, err := token.SignedString(hmacSampleSecret)
 
 	if err != nil {
-		c.JSON(400, err.Error())
+		c.AbortWithStatusJSON(400, err.Error())
 	} else {
-		c.JSON(200, message)
+		c.AbortWithStatusJSON(200, message)
 	}
 
 }
