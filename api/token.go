@@ -1,6 +1,8 @@
 package api
 
 import (
+	"damingerdai/address/models"
+	service "damingerdai/address/services"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -21,20 +23,33 @@ func CreateToken(c *gin.Context) {
 		return
 	}
 
-	exp := time.Now().Local().Add(time.Hour * time.Duration(1))
+	user := models.User{}
+	user.Username = username
+	user.Password = password
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"username": username,
-		"password": password,
-		"exp":      exp.Unix(),
-	})
-
-	message, err := token.SignedString(hmacSampleSecret)
-
+	b, err := service.HasUser(&user)
 	if err != nil {
-		c.AbortWithStatusJSON(400, err.Error())
+		c.AbortWithStatusJSON(500, err)
+		return
+	}
+	if b {
+		exp := time.Now().Local().Add(time.Hour * time.Duration(1))
+
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+			"username": username,
+			"password": password,
+			"exp":      exp.Unix(),
+		})
+
+		message, err := token.SignedString(hmacSampleSecret)
+
+		if err != nil {
+			c.AbortWithStatusJSON(500, err.Error())
+		} else {
+			c.AbortWithStatusJSON(200, message)
+		}
 	} else {
-		c.AbortWithStatusJSON(200, message)
+		c.AbortWithStatusJSON(404, "no user")
 	}
 
 }
