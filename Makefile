@@ -1,8 +1,12 @@
+init:
+	chmod +x scripts/*.sh
+
 build: clean
 	go build -o cmd/main main.go
 
 run: build
-	./cmd/main 
+	./cmd/main
+
 .PHONY: clean
 clean:
 	rm main || :
