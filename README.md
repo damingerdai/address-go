@@ -3,6 +3,12 @@ an address api based on golang
 
 # Get Start
 
+if you want to run this project, these software are required
+1. [Docker](https://docs.docker.com/install/)
+> if you use the Mac or Windows, please install `Docker Desktop`;
+> if you use the Linux, please download [docker-compose](https://docs.docker.com/compose/install/) separately.
+2. [Golang](https://golang.org/dl/)
+
 ## Install
 ```bash
 git clone https://github.com/damingerdai/address-go.git
