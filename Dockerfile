@@ -6,7 +6,7 @@ ADD . /address
 
 WORKDIR /address
 
-RUN export profile=docker && go build -o cmd/main main.go
+RUN export profile=docker && go build -o cmd/main cmd/address/main.go
 
 FROM alpine:3.7
 
