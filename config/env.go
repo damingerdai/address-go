@@ -27,12 +27,9 @@ func New() *Env {
 }
 
 func (env *Env) loadConfig() {
-	profile := os.Getenv("profile")
-	if profile != "docker" {
-		err := godotenv.Load()
-		if err != nil {
-			log.Fatalln("Error loading .env file")
-		}
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalln("Error loading .env file")
 	}
 	env.sqlHost = os.Getenv("SQL_HOST")
 	env.sqlPort = os.Getenv("SQL_PORT")
