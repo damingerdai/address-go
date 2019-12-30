@@ -6,7 +6,7 @@ ADD . /address
 
 WORKDIR /address
 
-RUN export profile=docker && go build -o cmd/main main.go
+RUN go build -o cmd/main cmd/address/main.go
 
 FROM alpine:3.7
 
@@ -20,6 +20,5 @@ COPY ./.env /usr/bin
 
 RUN chmod +x /usr/bin/main
 RUN chmod +x /usr/bin/.env
-RUN cd /usr/bin && ls -a
 
 ENTRYPOINT ["/usr/bin/main"]

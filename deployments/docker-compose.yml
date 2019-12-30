@@ -1,16 +1,16 @@
 version: '3'
 services: 
-  # address:
-  #   build: ./
-  #   image: address-api:latest
-  #   container_name: address-api
-  #   command: main
-  #   restart: always
-  #   env_file: .env
-  #   ports:
-  #       - "9999:9999"
-  #   depends_on: 
-  #     - mysql
+  address:
+    build: ../
+    image: address-api:latest
+    container_name: address-api
+    command: main
+    restart: always
+    env_file: ../.env
+    ports:
+        - "9999:9999"
+    depends_on: 
+      - mysql
   mysql:
     container_name: mysql
     image: mysql:5.7
