@@ -20,6 +20,7 @@ COPY ./.env /usr/bin
 
 RUN chmod +x /usr/bin/main
 RUN chmod +x /usr/bin/.env
-RUN cd /usr/bin && ls -a
+
+ENV profile="docker"
 
 ENTRYPOINT ["/usr/bin/main"]
