@@ -45,7 +45,7 @@ i use this [data source](https://github.com/wecatch/china_regions)
 # Roadmap
 
 ## 2019.12.30
-1. use [golang-standards](https://github.com/golang-standards/project-layout) to refactor the project layout [ ]
+1. use [golang-standards](https://github.com/golang-standards/project-layout) to refactor the project layout [x]
 
 # Owner
 
