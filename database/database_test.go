@@ -31,3 +31,7 @@ func TestCreateDataSource(t *testing.T) {
 		t.Error("fail to ping db")
 	}
 }
+
+func BenchmarkCreateDataSource(b *testing.B) {
+
+}
