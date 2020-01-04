@@ -12,9 +12,9 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
+	github.com/oschwald/geoip2-golang v1.4.0
 	github.com/pkg/errors v0.8.1
 	github.com/ugorji/go v1.1.7 // indirect
-	golang.org/x/sys v0.0.0-20191119060738-e882bf8e40c2 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	gopkg.in/yaml.v2 v2.2.5 // indirect
 )
