@@ -17,7 +17,7 @@ func createDBConfig(e *Env) DBConfig {
 }
 
 func GetDBConfig() *DBConfig {
-	if conf != nil {
+	if conf == nil {
 		initDBConfig()
 	}
 	return conf
