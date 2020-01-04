@@ -6,7 +6,7 @@ type DBConfig struct {
 
 var conf *DBConfig
 
-func init() {
+func initDBConfig() {
 	env := New()
 	a := createDBConfig(env)
 	conf = &a
@@ -17,5 +17,8 @@ func createDBConfig(e *Env) DBConfig {
 }
 
 func GetDBConfig() *DBConfig {
+	if conf != nil {
+		initDBConfig()
+	}
 	return conf
 }
