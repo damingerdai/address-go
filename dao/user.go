@@ -3,7 +3,6 @@ package dao
 import (
 	"damingerdai/address/models"
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -75,7 +74,6 @@ func HasUser(user *models.User) (bool, error) {
 		conditions = append(conditions, " password = ? ")
 		params = append(params, user.Password)
 	}
-	fmt.Println(sql + sliceConditions(&conditions))
 	rows := conn.QueryRow(sql+sliceConditions(&conditions), params...)
 	var count int
 	err := rows.Scan(&count)
