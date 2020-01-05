@@ -29,3 +29,15 @@ func TestGetCityByIp(t *testing.T) {
 	// Time zone: Europe/London
 	// Coordinates: 51.5142, -0.0931
 }
+
+// damingerdai/address/dao -bench BenchmarkGetCityByIp
+func BenchmarkGetCityByIp(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ip := "81.2.69.142"
+		record, err := GetCityByIp(ip)
+		if err != nil {
+			b.Error(err)
+		}
+		b.Log(record.Country)
+	}
+}
