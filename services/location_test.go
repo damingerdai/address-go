@@ -10,3 +10,13 @@ func TestGetLocationByIP(t *testing.T) {
 	location := GetLocationByIP(ip)
 	t.Log(location)
 }
+
+// go test -benchmem -run=^$ damingerdai/address/services -bench BenchmarkGetLocationByIP
+func BenchmarkGetLocationByIP(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ip := "81.2.69.142"
+		location := GetLocationByIP(ip)
+		b.Log(location)
+	}
+
+}
