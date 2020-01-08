@@ -7,7 +7,7 @@ import (
 )
 
 func GetCityByIp(ipStr string) (*geoip2.City, error) {
-	geoReader, err := geoip2.Open("../data/GeoLite2-City.mmdb")
+	geoReader, err := geoip2.Open("data/GeoLite2-City.mmdb")
 	if err != nil {
 		return nil, err
 	}
