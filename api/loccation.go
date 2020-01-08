@@ -1,7 +1,10 @@
 package api
 
-import "github.com/gin-gonic/gin"
-import service "damingerdai/address/services"
+import (
+	service "damingerdai/address/services"
+
+	"github.com/gin-gonic/gin"
+)
 
 func GetLocation(c *gin.Context) {
 	ip := c.Query("ip")

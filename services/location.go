@@ -1,7 +1,9 @@
 package service
 
-import "damingerdai/address/dao"
-import "damingerdai/address/models"
+import (
+	"damingerdai/address/dao"
+	"damingerdai/address/models"
+)
 
 func GetLocationByIP(ip string) *models.Location {
 	record, err := dao.GetCityByIp(ip)
