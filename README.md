@@ -22,6 +22,12 @@ git clone https://github.com/damingerdai/address-go.git
 docker volume create --name=address-go
 ```
 
+### Create Network
+
+```bash
+docker network create address-networks
+```
+
 ### Docker Compose
 
 run for mysql
