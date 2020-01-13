@@ -1,7 +1,7 @@
 package database
 
 import (
-	"damingerdai/address/config"
+	"damingerdai/address/internal/address/config"
 	"testing"
 )
 
