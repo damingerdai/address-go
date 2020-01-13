@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"damingerdai/address/internal/address/database"
+	"damingerdai/address/internal/database"
 	"database/sql"
 )
 

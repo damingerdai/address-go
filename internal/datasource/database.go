@@ -1,7 +1,7 @@
 package database
 
 import (
-	"damingerdai/address/internal/address/config"
+	"damingerdai/address/address/config"
 	"database/sql"
 	"log"
 	"strings"
