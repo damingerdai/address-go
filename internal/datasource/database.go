@@ -58,7 +58,9 @@ func CreateDataSource(conf *config.DBConfig) (*sql.DB, error) {
 }
 
 func GetDataSource() *sql.DB {
-	conf := config.GetDBConfig()
+	if conf == nil {
+		conf = config.GetDBConfig()
+	}
 
 	db, err := CreateDataSource(conf)
 	if err != nil {
