@@ -13,7 +13,7 @@ services:
   #     - mysql
   mysql:
     container_name: mysql
-    image: mysql:5.7
+    image: mysql:8.0
     volumes:
       - address-go:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
