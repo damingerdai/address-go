@@ -2,6 +2,7 @@ package dao
 
 import "damingerdai/address/internal/models"
 
+
 func ListCities() []*models.City {
 	rows, err := conn.Query("SELECT _id, name, city_id FROM city")
 	if err != nil {
