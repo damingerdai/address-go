@@ -15,6 +15,7 @@ func init() {
 	}
 }
 
+// go test -timeout 30s damingerdai/address/internal/datasource -run TestCreateDataSource -v
 func TestCreateDataSource(t *testing.T) {
 	if conf == nil {
 		t.Error("fail to init conf")
