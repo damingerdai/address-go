@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-var conf *config.DBConfig
-
 func init() {
 	conf = &config.DBConfig{
 		Host:     "127.0.0.1",

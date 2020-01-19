@@ -12,6 +12,7 @@ import (
 
 var (
 	conn           *sql.DB
+	conf           *config.DBConfig
 	dataSourceName string
 )
 
