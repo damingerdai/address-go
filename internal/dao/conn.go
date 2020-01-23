@@ -1,7 +1,7 @@
 package dao
 
 import "database/sql"
-import database "damingerdai/address/internal/datasource"
+import database "damingerdai/address/internal/database"
 
 var conn *sql.DB
 
