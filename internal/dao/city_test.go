@@ -3,7 +3,10 @@ package dao
 import "testing"
 
 func TestListCities(t *testing.T) {
-	cities := ListCities()
+	cities, err := ListCities()
+	if err != nil {
+		t.Error(err)
+	}
 	if len(cities) != 343 {
 		t.Error("no enough cities")
 	}
@@ -18,7 +21,10 @@ func TestListCities(t *testing.T) {
 
 func BenchmarkListCities(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		cities := ListCities()
+		cities, err := ListCities()
+		if err != nil {
+			b.Error(err)
+		}
 		if len(cities) != 343 {
 			b.Errorf("no enough cities: %d", len(cities))
 		}
