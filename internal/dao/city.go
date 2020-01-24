@@ -4,10 +4,10 @@ import "damingerdai/address/internal/models"
 
 import "errors"
 
-func ListCities() []*models.City {
+func ListCities() ([]*models.City, error) {
 	rows, err := GetConnection().Query("SELECT _id, name, city_id FROM city")
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 	defer rows.Close()
 	result := make([]*models.City, 0, 343)
@@ -26,7 +26,7 @@ func ListCities() []*models.City {
 		result = append(result, &city)
 	}
 
-	return result
+	return result, nil
 }
 
 func GetCity(id int) (*models.City, error) {
