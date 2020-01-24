@@ -2,9 +2,10 @@ package dao
 
 import "damingerdai/address/internal/models"
 
+import "errors"
 
 func ListCities() []*models.City {
-	rows, err := conn.Query("SELECT _id, name, city_id FROM city")
+	rows, err := GetConnection().Query("SELECT _id, name, city_id FROM city")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -29,10 +30,24 @@ func ListCities() []*models.City {
 }
 
 func GetCity(id int) (*models.City, error) {
-	rows := conn.QueryRow("SELECT _id as Id, name as Name, city_id as CityId FROM city WHERE _id = ?", id)
+	sql := "SELECT _id as Id, name as Name, city_id as CityId FROM city WHERE _id = ?"
+	stmt, err := GetConnection().Prepare(sql)
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+	rows, err := stmt.Query(id)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
 	var cityId int
 	var name string
-	err := rows.Scan(&id, &name, &cityId)
+	b := rows.Next()
+	if b == false {
+		return nil, errors.New("no city")
+	}
+	err = rows.Scan(&id, &name, &cityId)
 	if err != nil {
 		panic(err.Error())
 	}
