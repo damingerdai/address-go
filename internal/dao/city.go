@@ -5,7 +5,14 @@ import "damingerdai/address/internal/models"
 import "errors"
 
 func ListCities() ([]*models.City, error) {
-	rows, err := GetConnection().Query("SELECT _id, name, city_id FROM city")
+	sql := "SELECT _id, name, city_id FROM city"
+	conn := GetConnection()
+	stmt, err := conn.Prepare(sql)
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+	rows, err := stmt.Query()
 	if err != nil {
 		return nil, err
 	}
