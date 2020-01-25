@@ -22,7 +22,7 @@ func GetCity(id string) (*models.City, error) {
 	}
 	city, err := dao.GetCity(n)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "fail to get city which id is %s", id)
 	}
 	return city, nil
 }
