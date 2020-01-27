@@ -6,7 +6,7 @@ import "fmt"
 
 import "os"
 
-const address = "localhost:9999"
+const address = ":9999"
 
 func Run() {
 	r := routes.NewRouter()
