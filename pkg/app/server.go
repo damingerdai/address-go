@@ -1,14 +1,18 @@
 package app
 
-import "damingerdai/address/pkg/routes"
+import (
+	"damingerdai/address/pkg/routes"
+	"flag"
+	"fmt"
+	"os"
+)
 
-import "fmt"
-
-import "os"
-
-const address = ":9999"
+var port = flag.Int("port", 9999, "port")
 
 func Run() {
+	flag.Parse()
+	address := fmt.Sprintf(":%d", *port)
+	fmt.Println(address)
 	r := routes.NewRouter()
 	err := r.Run(address)
 	if err != nil {
