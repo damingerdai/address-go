@@ -33,3 +33,17 @@ func TestGetProvince(t *testing.T) {
 
 	}
 }
+
+func BenchmarkGetProvince(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := 1; j <= 32; i++ {
+			province, err := GetProvince(j)
+			if err != nil {
+				b.Errorf("err: %v; i: %d", err, i)
+			}
+			if province != nil {
+				b.Log(province)
+			}
+		}
+	}
+}
