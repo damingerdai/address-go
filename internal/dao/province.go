@@ -2,8 +2,6 @@ package dao
 
 import "damingerdai/address/internal/models"
 
-import "errors"
-
 func ListProvinces() ([]*models.Province, error) {
 	sql := "SELECT _id, name, province_id FROM province"
 	stmt, err := GetConnection().Prepare(sql)
@@ -63,5 +61,5 @@ func GetProvince(id int) (*models.Province, error) {
 		return &province, nil
 	}
 
-	return nil, errors.New("db error")
+	return nil, nil
 }
