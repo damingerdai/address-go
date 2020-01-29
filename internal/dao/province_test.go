@@ -20,3 +20,16 @@ func BenchmarkListProvinces(b *testing.B) {
 		}
 	}
 }
+
+func TestGetProvince(t *testing.T) {
+	for i := 1; i <= 32; i++ {
+		province, err := GetProvince(i)
+		if err != nil {
+			t.Errorf("err: %v; i: %d", err, i)
+		}
+		if province != nil {
+			t.Log(province)
+		}
+
+	}
+}
