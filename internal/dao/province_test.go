@@ -36,7 +36,7 @@ func TestGetProvince(t *testing.T) {
 
 func BenchmarkGetProvince(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for j := 1; j <= 32; i++ {
+		for j := 1; j <= 32; j++ {
 			province, err := GetProvince(j)
 			if err != nil {
 				b.Errorf("err: %v; i: %d", err, i)
