@@ -12,10 +12,14 @@ import (
 )
 
 func main() {
-	fmt.Println("migrate")
+	fmt.Fprintln(os.Stdout, "migrate db script...")
 	db, err := sql.Open("mysql", "daming:267552@tcp(127.0.0.1:3306)/address?multiStatements=true")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintf(os.Stderr, "fail to connect to db: %v", err.Error())
+		os.Exit(0)
+	}
+	if err = db.Ping(); err != nil {
+		fmt.Fprintf(os.Stderr, "fail to connect to db: %v", err.Error())
 		os.Exit(0)
 	}
 	driver, _ := mysql.WithInstance(db, &mysql.Config{})
@@ -25,12 +29,13 @@ func main() {
 		driver,
 	)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintf(os.Stderr, "fail to get migrate script: %v", err.Error())
 		os.Exit(0)
 	}
 	err = m.Up()
-	if err != nil {
-		fmt.Println(err)
+	if err != nil && err.Error() != "no change" {
+		fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
 		os.Exit(0)
 	}
+	fmt.Fprintln(os.Stdout, "run migrate db script")
 }
