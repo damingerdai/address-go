@@ -15,4 +15,7 @@ main
 **/.env
 
 # Mac
-.DS_Store   
+.DS_Store
+
+# IDE
+.idea/
