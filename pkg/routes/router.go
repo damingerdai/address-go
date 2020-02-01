@@ -11,6 +11,8 @@ func NewRouter() *gin.Engine {
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("ping", api.Ping)
+		v1.GET("cities", api.ListCities)
+		v1.GET("city/:id", api.GetCity)
 	}
 
 	return r
