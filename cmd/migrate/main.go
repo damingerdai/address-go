@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"flag"
 	"fmt"
 	"os"
 
@@ -12,6 +13,7 @@ import (
 )
 
 func main() {
+	flag.Parse()
 	fmt.Fprintln(os.Stdout, "migrate db script...")
 	db, err := sql.Open("mysql", "daming:267552@tcp(127.0.0.1:3306)/address?multiStatements=true")
 	if err != nil {
@@ -32,10 +34,22 @@ func main() {
 		fmt.Fprintf(os.Stderr, "fail to get migrate script: %v", err.Error())
 		os.Exit(0)
 	}
-	err = m.Up()
-	if err != nil && err.Error() != "no change" {
-		fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
-		os.Exit(0)
+	switch flag.Arg(0) {
+	case "up":
+		err := m.Up()
+		if err != nil && err.Error() != "no change" {
+			fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
+			os.Exit(0)
+		}
+	case "down":
+		err := m.Down()
+		if err != nil && err.Error() != "no change" {
+			fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
+			os.Exit(0)
+		}
+	default:
+		fmt.Fprintln(os.Stdout, "No run db script")
 	}
+	 
 	fmt.Fprintln(os.Stdout, "run migrate db script")
 }
