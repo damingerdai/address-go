@@ -29,7 +29,7 @@ func New() *Env {
 func (env *Env) loadConfig() {
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatalln("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 	env.sqlHost = os.Getenv("SQL_HOST")
 	env.sqlPort = os.Getenv("SQL_PORT")
