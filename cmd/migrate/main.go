@@ -30,6 +30,7 @@ func main() {
 		"mysql",
 		driver,
 	)
+	defer m.Close()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "fail to get migrate script: %v", err.Error())
 		os.Exit(0)
@@ -47,9 +48,15 @@ func main() {
 			fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
 			os.Exit(0)
 		}
+	case "clear":
+		err := m.Drop()
+		if err != nil && err.Error() != "no change" {
+			fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
+			os.Exit(0)
+		}
 	default:
 		fmt.Fprintln(os.Stdout, "No run db script")
 	}
-	 
+
 	fmt.Fprintln(os.Stdout, "run migrate db script")
 }
