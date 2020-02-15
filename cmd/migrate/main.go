@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang-migrate/migrate"
@@ -50,6 +51,26 @@ func main() {
 		}
 	case "clear":
 		err := m.Drop()
+		if err != nil && err.Error() != "no change" {
+			fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
+			os.Exit(0)
+		}
+	case "force":
+		version := flag.Arg(1)
+		if version == "" {
+			fmt.Fprintln(os.Stderr, "error: please specify version argument V")
+			os.Exit(0)
+		}
+		v, err := strconv.Atoi(version)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "error: can't read version argument V")
+			os.Exit(0)
+		}
+		if v < -1 {
+			fmt.Fprintln(os.Stderr, "rror: argument V must be >= -1")
+			os.Exit(0)
+		}
+		err = m.Force(v)
 		if err != nil && err.Error() != "no change" {
 			fmt.Fprintf(os.Stderr, "fail to run migrate script: %v", err.Error())
 			os.Exit(0)

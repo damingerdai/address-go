@@ -7,6 +7,18 @@ build: clean
 run: build
 	./cmd/main
 
+migrate:
+	rm -r -f ./build/migrate && sh scripts/migrate.sh
+
+migrate-up: migrate
+	./build/migrate up
+
+migrate-down: migrate
+	./build/migrate down
+
+migrate-drop: migrate
+	./build/migrate clear
+
 .PHONY: clean
 clean:
 	rm main || :
