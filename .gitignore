@@ -13,6 +13,7 @@
 go.sum
 main
 **/.env
+build/
 
 # Mac
 .DS_Store
