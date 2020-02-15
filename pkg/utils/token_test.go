@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"damingerdai/address/models"
+	"damingerdai/address/internal/models"
 	"testing"
 	"time"
 )
