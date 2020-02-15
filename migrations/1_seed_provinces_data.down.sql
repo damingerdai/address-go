@@ -1,1 +1,1 @@
-TRUNCATE TABLE  province
+TRUNCATE TABLE province
