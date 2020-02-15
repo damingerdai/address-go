@@ -6,25 +6,28 @@ import (
 	"time"
 )
 
-func TestCreateToken(t *testing.T) {
+func TestToken(t *testing.T) {
 	user := models.User{
 		Username: "daming",
 		Password: "123456",
 	}
 	secretKey := []byte("damingeridai")
-	expiresAt := time.Date(2020, 10, 10, 12, 0, 0, 0, time.UTC).Unix()
+	expiresAt := time.Now().Add(time.Second * 5).Unix()
 
 	if token, err := CreateToken(&user, secretKey, expiresAt); err != nil {
 		t.Errorf("fail to create token: %s", err)
 	} else {
-		t.Logf("token: %s", token)
+		time.Sleep(time.Second * 10)
+		if b := VerifyToken(token, secretKey); !b {
+			t.Logf("token: %s", token)
+		}
 	}
 
 }
 
 func BenchmarkToken(b *testing.B) {
 	secretKey := []byte("damingeridai")
-	expiresAt := time.Date(2020, 10, 10, 12, 0, 0, 0, time.UTC).Unix()
+	expiresAt := time.Now().Add(time.Second * 5).Unix()
 	for i := 0; i < b.N; i++ {
 		user := models.User{
 			Username: "daming",
