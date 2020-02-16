@@ -2,7 +2,7 @@ package service
 
 import (
 	"damingerdai/address/dao"
-	"damingerdai/address/models"
+	"damingerdai/address/internal/models"
 	"damingerdai/address/pkg/utils"
 	"strconv"
 
