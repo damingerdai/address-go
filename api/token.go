@@ -1,7 +1,7 @@
 package api
 
 import (
-	"damingerdai/address/models"
+	"damingerdai/address/internal/models"
 	service "damingerdai/address/services"
 	"time"
 
