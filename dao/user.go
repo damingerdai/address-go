@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"damingerdai/address/models"
+	"damingerdai/address/internal/models"
 	"errors"
 	"strings"
 )
