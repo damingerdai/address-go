@@ -1,8 +1,8 @@
 package service
 
 import (
-	"damingerdai/address/dao"
-	"damingerdai/address/models"
+	"damingerdai/address/internal/dao"
+	"damingerdai/address/internal/models"
 	"strconv"
 )
 

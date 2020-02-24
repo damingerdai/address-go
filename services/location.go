@@ -2,7 +2,7 @@ package service
 
 import (
 	"damingerdai/address/dao"
-	"damingerdai/address/models"
+	"damingerdai/address/internal/models"
 )
 
 func GetLocationByIP(ip string) *models.Location {
