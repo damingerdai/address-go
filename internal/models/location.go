@@ -7,3 +7,7 @@ type Location struct {
 	Latitude     float64           `json:"latitude"`
 	Longitude    float64           `json:"longitude"`
 }
+
+func (location *Location) GetCity(name string) string {
+	return location.City[name]
+}
