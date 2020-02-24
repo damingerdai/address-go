@@ -20,6 +20,7 @@ require (
 	github.com/golang/protobuf v1.3.2 // indirect
 	github.com/google/go-cmp v0.2.0 // indirect
 	github.com/gorilla/mux v1.7.1 // indirect
+	github.com/jmoiron/sqlx v1.2.0 // indirect
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.8 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
