@@ -1,10 +1,10 @@
 package service
 
-import "damingerdai/address/models"
-
-import "damingerdai/address/dao"
-
-import "strconv"
+import (
+	"damingerdai/address/dao"
+	"damingerdai/address/internal/models"
+	"strconv"
+)
 
 func ListProvinces() []*models.Province {
 	return dao.ListProvinces()
