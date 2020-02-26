@@ -35,3 +35,12 @@ func GetUser(c *gin.Context) {
 	}
 
 }
+
+func ListUsers(c *gin.Context) {
+	users, err := service.ListUsers()
+	if err != nil {
+		c.AbortWithStatusJSON(500, err)
+	} else {
+		c.AbortWithStatusJSON(200, users)
+	}
+}

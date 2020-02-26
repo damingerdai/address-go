@@ -37,13 +37,13 @@ func GetUserById(id int64) (*models.User, error) {
 	return &user, nil
 }
 
-func ListUsers() ([]*models.User, error) {
+func ListUsers() (*[]models.User, error) {
 	rows, err := GetConnection().Query("SELECT id, name, password FROM user")
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	users := make([]*models.User, 0)
+	users := make([]models.User, 0)
 	for rows.Next() {
 		var id int64
 		var name, password string
@@ -52,10 +52,10 @@ func ListUsers() ([]*models.User, error) {
 			panic(err.Error())
 		}
 		user := models.User{id, name, password}
-		users = append(users, &user)
+		users = append(users, user)
 	}
 
-	return users, nil
+	return &users, nil
 }
 
 func HasUser(user *models.User) (bool, error) {
