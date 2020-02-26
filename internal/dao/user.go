@@ -8,7 +8,7 @@ import (
 
 func CreateUser(id int64, username, password string) (err error) {
 	sql := "INSERT user SET id = ? ,name = ?, password = ?"
-	stmt, err := conn.Prepare(sql)
+	stmt, err := GetConnection().Prepare(sql)
 	if err != nil {
 		return
 	}
@@ -27,7 +27,7 @@ func CreateUser(id int64, username, password string) (err error) {
 }
 
 func GetUserById(id int64) (*models.User, error) {
-	rows := conn.QueryRow("SELECT name, password FROM user WHERE id = ?", id)
+	rows := GetConnection().QueryRow("SELECT name, password FROM user WHERE id = ?", id)
 	var name, password string
 	err := rows.Scan(&name, &password)
 	if err != nil {
@@ -38,7 +38,7 @@ func GetUserById(id int64) (*models.User, error) {
 }
 
 func ListUsers() ([]*models.User, error) {
-	rows, err := conn.Query("SELECT id, name, password FROM user")
+	rows, err := GetConnection().Query("SELECT id, name, password FROM user")
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func HasUser(user *models.User) (bool, error) {
 		conditions = append(conditions, " password = ? ")
 		params = append(params, user.Password)
 	}
-	rows := conn.QueryRow(sql+sliceConditions(&conditions), params...)
+	rows := GetConnection().QueryRow(sql+sliceConditions(&conditions), params...)
 	var count int
 	err := rows.Scan(&count)
 	if err != nil {

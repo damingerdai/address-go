@@ -2,7 +2,7 @@ package api
 
 import (
 	"damingerdai/address/internal/models"
-	"damingerdai/address/pkg/utils"
+	"damingerdai/address/internal/utils"
 	"time"
 
 	"github.com/gin-gonic/gin"
