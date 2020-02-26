@@ -30,3 +30,12 @@ func GetUser(id int64) (*models.User, error) {
 		return user, nil
 	}
 }
+
+func ListUsers() (*[]models.User, error) {
+	users, err := dao.ListUsers()
+	if err != nil && err != sql.ErrNoRows {
+		return nil, errors.Wrap(err, "fail to list user")
+	} else {
+		return users, nil
+	}
+}
