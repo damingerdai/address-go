@@ -36,6 +36,7 @@ func (env *Env) loadConfig() {
 	env.sqlUser = os.Getenv("SQL_USER")
 	env.sqlPwd = os.Getenv("SQL_PASSWORD")
 	env.sqlDB = os.Getenv("SQL_DB")
+	log.Printf("%v", env)
 }
 
 func (env *Env) Host() string {

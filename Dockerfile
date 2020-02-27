@@ -1,4 +1,4 @@
-FROM golang:1.13.5-alpine3.10 as build
+FROM golang:1.14.0-alpine3.11 as build
 
 # ENV GOPROXY=https://goproxy.io
 
@@ -16,9 +16,7 @@ WORKDIR /www
 
 COPY --from=build /address/cmd/main /usr/bin/main
 COPY ./data /usr/bin
-COPY ./.env /usr/bin
 
 RUN chmod +x /usr/bin/main
-RUN chmod +x /usr/bin/.env
 
 ENTRYPOINT ["/usr/bin/main"]
