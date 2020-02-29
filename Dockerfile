@@ -18,8 +18,6 @@ COPY --from=build /address/cmd/main /usr/bin/main
 COPY ./data /data
 COPY ./data /usr/bin/data
 
-RUN cd /usr/bin && ls
-RUN cd /usr/bin/data && ls
 RUN chmod +x /usr/bin/main
 RUN chmod +x /usr/bin/data
 
