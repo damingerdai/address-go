@@ -2,6 +2,8 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
+	"log"
+	"regexp"
 
 	"damingerdai/address/api"
 	utils "damingerdai/address/internal/utils"
@@ -9,7 +11,10 @@ import (
 
 func ValidateToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		if c.Request.URL.String() == "/api/v1/token" || c.Request.URL.String() == "/api/v1/ping" || c.Request.URL.String() == "/api/v1/user" {
+		url := c.Request.URL.String()
+		o, _ := regexp.MatchString("^/api/v1/(token|ping|user)$", url)
+		log.Println(o)
+		if ok, _ := regexp.MatchString("^/api/v1/(token|ping|user)$", url); ok {
 			c.Next()
 		} else {
 			tokenStr := c.GetHeader("token")
