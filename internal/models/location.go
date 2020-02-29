@@ -1,6 +1,7 @@
 package models
 
 type Location struct {
+	Ip           string            `json:"ip"`
 	City         map[string]string `json:"city"`
 	Country      map[string]string `json:"country"`
 	Subdivisions map[string]string `json:"Subdivisions"`
