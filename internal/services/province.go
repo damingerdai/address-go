@@ -21,7 +21,7 @@ func GetProvince(id string) (*models.Province, error) {
 	if err != nil {
 		return nil, err
 	}
-	province, err := dao.GetProvince(n);
+	province, err := dao.GetProvince(n)
 	if err != nil {
 		return nil, errors.Wrapf(err, "fail to get the province which id is %s", id)
 	}

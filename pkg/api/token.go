@@ -42,7 +42,8 @@ func (headerBinding) Bind(req *http.Request, obj interface{}) error {
 			if v.CanSet() {
 				switch v.Kind() {
 				// TODO support other type
-				case reflect.String: v.SetString(headers.Get(tagName))
+				case reflect.String:
+					v.SetString(headers.Get(tagName))
 				}
 			}
 		}
@@ -50,7 +51,6 @@ func (headerBinding) Bind(req *http.Request, obj interface{}) error {
 	log.Printf("obj: %v", obj)
 	return nil
 }
-
 
 func CreateToken(c *gin.Context) {
 	username := c.GetHeader("username")
