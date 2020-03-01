@@ -21,4 +21,7 @@ COPY ./data /usr/bin/data
 RUN chmod +x /usr/bin/main
 RUN chmod +x /usr/bin/data
 
+ENV TZ=Aisa/Shanghai
+RUN ln -snf /usr/shar/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ENTRYPOINT ["/usr/bin/main"]
