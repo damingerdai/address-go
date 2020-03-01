@@ -25,7 +25,7 @@ func CreateUser(username, password string) (int64, error) {
 func GetUser(id int64) (*models.User, error) {
 	user, err := dao.GetUserById(id)
 	if err != nil && err != sql.ErrNoRows {
-		return nil, errors.Wrapf(err, "fail to get user id(%s): %s", id, err.Error())
+		return nil, errors.Wrapf(err, "fail to get user id(%d): %s", id, err.Error())
 	} else {
 		return user, nil
 	}
