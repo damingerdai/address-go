@@ -3,10 +3,56 @@ package api
 import (
 	"damingerdai/address/internal/models"
 	"damingerdai/address/internal/utils"
+	"log"
+	"net/http"
+	"reflect"
 	"time"
 
 	"github.com/gin-gonic/gin"
 )
+
+type headerBinding struct{}
+
+func (headerBinding) Name() string {
+	return "header"
+}
+
+func (headerBinding) Bind(req *http.Request, obj interface{}) error {
+	value := reflect.ValueOf(obj)
+	knd := value.Kind()
+	if knd == reflect.Ptr {
+		vPtr := value
+		if value.IsNil() {
+			vPtr = reflect.New(value.Type().Elem())
+		}
+		value.Set(vPtr)
+		log.Printf("vPtr: %v", vPtr)
+	}
+	typ := reflect.TypeOf(obj)
+	headers := req.Header
+	log.Printf("typ.NumField: %d", typ.NumField)
+	for i := 0; i < typ.NumField(); i++ {
+		field := typ.Field(i)
+		log.Printf("%v", field)
+		tag := field.Tag
+		log.Printf("%v", tag)
+		tagName := tag.Get("header")
+		log.Printf("%v", tagName)
+		if len(tagName) != 0 {
+			v := value.Field(i)
+			// v = v.Elem()
+			if v.CanSet() {
+				switch v.Kind() {
+				// TODO support other type
+				case reflect.String: v.SetString(headers.Get(tagName))
+				}
+			}
+		}
+	}
+	log.Printf("obj: %v", obj)
+	return nil
+}
+
 
 func CreateToken(c *gin.Context) {
 	username := c.GetHeader("username")
