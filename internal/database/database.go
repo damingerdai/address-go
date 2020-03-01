@@ -3,6 +3,7 @@ package database
 import (
 	"damingerdai/address/internal/config"
 	"database/sql"
+	"github.com/jmoiron/sqlx"
 	"log"
 	"strings"
 
@@ -37,36 +38,36 @@ func createDataSourceName(conf *config.DBConfig) string {
 	return dataSourceName
 }
 
-func CreateDataSource(conf *config.DBConfig) (*sql.DB, error) {
+func CreateDataSource(conf *config.DBConfig) (*sqlx.DB, error) {
 	driverName := "mysql"
 	dataSourceName := createDataSourceName(conf)
-	db, err := sql.Open(driverName, dataSourceName)
+	db, err := sqlx.Connect(driverName, dataSourceName)
 
 	if err != nil {
-		log.Println(err)
-		log.Fatal("Something wrong with created DB connection")
-		return nil, errors.Wrap(err, "sql.Connect(driverName, dataSourceName)")
+		log.Printf("Something wrong with created DB connection: %s", err.Error())
+		return nil, errors.Wrap(err, "sqlx.Connect(driverName, dataSourceName)")
 	}
+
+	db.SetMaxIdleConns(5)
 
 	err = db.Ping()
 	if err != nil {
-		log.Println(err)
-		log.Fatal("Something wrong with created DB connection")
+		log.Printf("Something wrong with DB connection: %s", err.Error())
 		return nil, errors.Wrap(err, "sql.Connect(driverName, dataSourceName)")
 	}
 
 	return db, nil
 }
 
-func GetDataSource() *sql.DB {
-	if conf == nil {
-		conf = config.GetDBConfig()
-	}
-
-	db, err := CreateDataSource(conf)
-	if err != nil {
-		panic(err)
-	}
-
-	return db
-}
+//func GetDataSource() *sql.DB {
+//	if conf == nil {
+//		conf = config.GetDBConfig()
+//	}
+//
+//	db, err := CreateDataSource(conf)
+//	if err != nil {
+//		panic(err)
+//	}
+//
+//	return db
+//}
