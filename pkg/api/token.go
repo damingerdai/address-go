@@ -2,13 +2,11 @@ package api
 
 import (
 	"damingerdai/address/internal/models"
-	"damingerdai/address/internal/utils"
+	service "damingerdai/address/internal/services"
+	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"reflect"
-	"time"
-
-	"github.com/gin-gonic/gin"
 )
 
 type headerBinding struct{}
@@ -71,12 +69,14 @@ func CreateToken(c *gin.Context) {
 	user := models.User{}
 	user.Username = username
 	user.Password = password
-	secretKey := []byte("damingeridai")
-	expiresAt := time.Now().Add(time.Second * 5).Unix()
-	token, err := utils.CreateToken(&user, secretKey, expiresAt)
-	if err != nil {
-		c.AbortWithStatusJSON(500, err.Error())
-	} else {
-		c.AbortWithStatusJSON(200, token)
-	}
+
+	service.CreateToken(c, &user)
+	//secretKey := []byte("damingeridai")
+	//expiresAt := time.Now().Add(time.Second * 5).Unix()
+	//token, err := utils.CreateToken(&user, secretKey, expiresAt)
+	//if err != nil {
+	//	c.AbortWithStatusJSON(500, err.Error())
+	//} else {
+	//	c.AbortWithStatusJSON(200, token)
+	//}
 }
