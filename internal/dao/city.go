@@ -1,12 +1,10 @@
 package dao
 
 import (
+	"damingerdai/address/internal/models"
 	"damingerdai/address/internal/utils"
 	jdbc "database/sql"
-
-	"damingerdai/address/internal/models"
 	"github.com/jmoiron/sqlx"
-	"github.com/pkg/errors"
 )
 
 func ListCities(trx *sqlx.Tx) ([]*models.City, error) {
@@ -50,7 +48,7 @@ func GetCity(trx *sqlx.Tx, id int) (*models.City, error) {
 	var name string
 	b := rows.Next()
 	if b == false {
-		return nil, errors.New("no city")
+		return nil, jdbc.ErrNoRows
 	}
 	err = rows.Scan(&id, &name, &cityId)
 	if err != nil {
