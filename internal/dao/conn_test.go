@@ -2,10 +2,13 @@ package dao
 
 import (
 	"damingerdai/address/internal/config"
+	"damingerdai/address/internal/database"
+	"github.com/jmoiron/sqlx"
 	"os"
 )
 
 var conf *config.DBConfig
+var db sqlx.DB
 
 func init() {
 	conf = &config.DBConfig{
@@ -20,6 +23,7 @@ func init() {
 	os.Setenv("SQL_USER", conf.User)
 	os.Setenv("SQL_PASSWORD", conf.Password)
 	os.Setenv("SQL_DB", conf.Dbname)
+	db, _ := database.CreateDataSource(conf)
 }
 
 //func TestGetConnection(t *testing.T) {
