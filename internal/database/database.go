@@ -2,7 +2,6 @@ package database
 
 import (
 	"damingerdai/address/internal/config"
-	"database/sql"
 	"github.com/jmoiron/sqlx"
 	"log"
 	"strings"
@@ -12,7 +11,6 @@ import (
 )
 
 var (
-	conn           *sql.DB
 	conf           *config.DBConfig
 	dataSourceName string
 )
