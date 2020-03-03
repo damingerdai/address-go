@@ -1,10 +1,6 @@
 package dao
 
-import (
-	"database/sql"
-)
-
-var conn *sql.DB
+//var conn *sql.DB
 
 //func GetConnection() *sql.DB {
 //	if conn == nil {
