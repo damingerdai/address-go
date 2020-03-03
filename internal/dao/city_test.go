@@ -2,12 +2,10 @@ package dao
 
 import (
 	jdbc "database/sql"
-	"fmt"
 	"testing"
 )
 
 func TestListCities(t *testing.T) {
-	fmt.Printf("db1: %v", db)
 	err := db.Ping()
 	if err != nil {
 		t.Log("db is no ready")
@@ -35,7 +33,6 @@ func TestListCities(t *testing.T) {
 }
 
 func BenchmarkListCities(b *testing.B) {
-	fmt.Printf("db1: %v", db)
 	err := db.Ping()
 	if err != nil {
 		b.Log("db is no ready")
