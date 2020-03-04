@@ -29,7 +29,7 @@ func CreateUser(trx *sqlx.Tx, id int64, username, password string) (err error) {
 }
 
 func GetUserById(trx *sqlx.Tx, id int64) (*models.User, error) {
-	rows :=trx.QueryRow("SELECT name, password FROM user WHERE id = ?", id)
+	rows := trx.QueryRow("SELECT name, password FROM user WHERE id = ?", id)
 	var name, password string
 	err := rows.Scan(&name, &password)
 	if err != nil {

@@ -10,7 +10,7 @@ import (
 
 var (
 	conf *config.DBConfig
-	db *sqlx.DB
+	db   *sqlx.DB
 )
 
 func init() {
@@ -26,7 +26,7 @@ func init() {
 	os.Setenv("SQL_USER", conf.User)
 	os.Setenv("SQL_PASSWORD", conf.Password)
 	os.Setenv("SQL_DB", conf.Dbname)
-	db,  _ = database.CreateDataSource(conf)
+	db, _ = database.CreateDataSource(conf)
 	db.Ping()
 }
 
@@ -45,6 +45,7 @@ func TestGetConnection(t *testing.T) {
 	defer rows.Close()
 	t.Log("pass")
 }
+
 //
 //func BenchmarkGetConnection(b *testing.B) {
 //	for i := 1; i < b.N; i++ {
