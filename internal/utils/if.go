@@ -6,4 +6,3 @@ func If(condition bool, trueVal, falseVal interface{}) interface{} {
 	}
 	return falseVal
 }
-
