@@ -34,6 +34,7 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/sirupsen/logrus v1.4.1 // indirect
 	github.com/ugorji/go v1.1.7 // indirect
+	golang.org/x/net v0.0.0-20190603091049-60506f45cf65
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	google.golang.org/genproto v0.0.0-20190425155659-357c62f0e4bb // indirect
