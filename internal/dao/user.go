@@ -3,15 +3,17 @@ package dao
 import (
 	"damingerdai/address/internal/models"
 	"errors"
+	"github.com/jmoiron/sqlx"
 	"strings"
 )
 
-func CreateUser(id int64, username, password string) (err error) {
+func CreateUser(trx *sqlx.Tx, id int64, username, password string) (err error) {
 	sql := "INSERT user SET id = ? ,name = ?, password = ?"
-	stmt, err := GetConnection().Prepare(sql)
+	stmt, err := trx.Prepare(sql)
 	if err != nil {
 		return
 	}
+	defer stmt.Close()
 	res, err := stmt.Exec(id, username, password)
 	if err != nil {
 		return
@@ -26,8 +28,8 @@ func CreateUser(id int64, username, password string) (err error) {
 	return
 }
 
-func GetUserById(id int64) (*models.User, error) {
-	rows := GetConnection().QueryRow("SELECT name, password FROM user WHERE id = ?", id)
+func GetUserById(trx *sqlx.Tx, id int64) (*models.User, error) {
+	rows := trx.QueryRow("SELECT name, password FROM user WHERE id = ?", id)
 	var name, password string
 	err := rows.Scan(&name, &password)
 	if err != nil {
@@ -37,8 +39,8 @@ func GetUserById(id int64) (*models.User, error) {
 	return &user, nil
 }
 
-func ListUsers() (*[]models.User, error) {
-	rows, err := GetConnection().Query("SELECT id, name, password FROM user")
+func ListUsers(trx *sqlx.Tx) (*[]models.User, error) {
+	rows, err := trx.Query("SELECT id, name, password FROM user")
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +60,7 @@ func ListUsers() (*[]models.User, error) {
 	return &users, nil
 }
 
-func HasUser(user *models.User) (bool, error) {
+func HasUser(trx *sqlx.Tx, user *models.User) (bool, error) {
 	sql := "SELECT count(id) FROM user where "
 	conditions := make([]string, 0, 3)
 	params := make([]interface{}, 0, 3)
@@ -74,7 +76,7 @@ func HasUser(user *models.User) (bool, error) {
 		conditions = append(conditions, " password = ? ")
 		params = append(params, user.Password)
 	}
-	rows := GetConnection().QueryRow(sql+sliceConditions(&conditions), params...)
+	rows := trx.QueryRow(sql+sliceConditions(&conditions), params...)
 	var count int
 	err := rows.Scan(&count)
 	if err != nil {

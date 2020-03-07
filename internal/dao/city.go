@@ -1,23 +1,20 @@
 package dao
 
-import "damingerdai/address/internal/models"
+import (
+	"damingerdai/address/internal/models"
+	"damingerdai/address/internal/utils"
+	jdbc "database/sql"
+	"github.com/jmoiron/sqlx"
+)
 
-import "errors"
-
-func ListCities() ([]*models.City, error) {
+func ListCities(trx *sqlx.Tx) ([]*models.City, error) {
+	result := make([]*models.City, 0, 343)
 	sql := "SELECT _id, name, city_id FROM city"
-	conn := GetConnection()
-	stmt, err := conn.Prepare(sql)
+	rows, err := trx.Query(sql)
 	if err != nil {
-		return nil, err
-	}
-	defer stmt.Close()
-	rows, err := stmt.Query()
-	if err != nil {
-		return nil, err
+		return nil, utils.If(err != jdbc.ErrNoRows, err, nil).(error)
 	}
 	defer rows.Close()
-	result := make([]*models.City, 0, 343)
 	for rows.Next() {
 		var id, cityId int
 		var name string
@@ -32,13 +29,12 @@ func ListCities() ([]*models.City, error) {
 		}
 		result = append(result, &city)
 	}
-
 	return result, nil
 }
 
-func GetCity(id int) (*models.City, error) {
-	sql := "SELECT _id as Id, name as Name, city_id as CityId FROM city WHERE _id = ?"
-	stmt, err := GetConnection().Prepare(sql)
+func GetCity(trx *sqlx.Tx, id int) (*models.City, error) {
+	schema := "SELECT _id as Id, name as Name, city_id as CityId FROM city WHERE _id = ?"
+	stmt, err := trx.Prepare(schema)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +48,7 @@ func GetCity(id int) (*models.City, error) {
 	var name string
 	b := rows.Next()
 	if b == false {
-		return nil, errors.New("no city")
+		return nil, jdbc.ErrNoRows
 	}
 	err = rows.Scan(&id, &name, &cityId)
 	if err != nil {

@@ -1,20 +1,23 @@
 package service
 
 import (
+	"context"
 	"damingerdai/address/internal/dao"
 	"damingerdai/address/internal/models"
 	"damingerdai/address/internal/utils"
 	"database/sql"
 
+	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 )
 
-func CreateUser(username, password string) (int64, error) {
+func CreateUser(ctx context.Context, username, password string) (int64, error) {
 	id, err := utils.CreateID()
 	if err != nil {
 		return 0, errors.Wrapf(err, "fail to create user id: %s", err.Error())
 	}
-	err = dao.CreateUser(id, username, password)
+	trx := ctx.Value("trx").(*sqlx.Tx)
+	err = dao.CreateUser(trx, id, username, password)
 	if err != nil {
 		return 0, err
 	} else {
@@ -22,8 +25,9 @@ func CreateUser(username, password string) (int64, error) {
 	}
 }
 
-func GetUser(id int64) (*models.User, error) {
-	user, err := dao.GetUserById(id)
+func GetUser(ctx context.Context, id int64) (*models.User, error) {
+	trx := ctx.Value("trx").(*sqlx.Tx)
+	user, err := dao.GetUserById(trx, id)
 	if err != nil && err != sql.ErrNoRows {
 		return nil, errors.Wrapf(err, "fail to get user id(%d): %s", id, err.Error())
 	} else {
@@ -31,8 +35,9 @@ func GetUser(id int64) (*models.User, error) {
 	}
 }
 
-func ListUsers() (*[]models.User, error) {
-	users, err := dao.ListUsers()
+func ListUsers(ctx context.Context) (*[]models.User, error) {
+	trx := ctx.Value("trx").(*sqlx.Tx)
+	users, err := dao.ListUsers(trx)
 	if err != nil && err != sql.ErrNoRows {
 		return nil, errors.Wrap(err, "fail to list user")
 	} else {

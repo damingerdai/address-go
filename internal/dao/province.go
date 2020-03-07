@@ -1,10 +1,13 @@
 package dao
 
-import "damingerdai/address/internal/models"
+import (
+	"damingerdai/address/internal/models"
+	"github.com/jmoiron/sqlx"
+)
 
-func ListProvinces() ([]*models.Province, error) {
+func ListProvinces(trx *sqlx.Tx) ([]*models.Province, error) {
 	sql := "SELECT _id, name, province_id FROM province"
-	stmt, err := GetConnection().Prepare(sql)
+	stmt, err := trx.Prepare(sql)
 	if err != nil {
 		return nil, err
 	}
@@ -34,9 +37,9 @@ func ListProvinces() ([]*models.Province, error) {
 	return result, nil
 }
 
-func GetProvince(id int) (*models.Province, error) {
+func GetProvince(trx *sqlx.Tx, id int) (*models.Province, error) {
 	sql := "SELECT _id, name, province_id FROM province where _id = ?"
-	stmt, err := GetConnection().Prepare(sql)
+	stmt, err := trx.Prepare(sql)
 	if err != nil {
 		return nil, err
 	}

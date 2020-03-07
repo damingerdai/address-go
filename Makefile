@@ -19,6 +19,9 @@ migrate-down: migrate
 migrate-drop: migrate
 	./build/migrate clear
 
+docker:
+	docker-compose down && docker-compose build address && docker-compose up
+
 .PHONY: clean
 clean:
 	rm main || :

@@ -1,5 +1,7 @@
 package config
 
+import "os"
+
 type DBConfig struct {
 	Host, Port, User, Password, Dbname string
 }
@@ -7,13 +9,12 @@ type DBConfig struct {
 var conf *DBConfig
 
 func initDBConfig() {
-	env := New()
-	a := createDBConfig(env)
+	a := createDBConfig()
 	conf = &a
 }
 
-func createDBConfig(e *Env) DBConfig {
-	return DBConfig{Host: e.Host(), Port: e.Port(), User: e.User(), Password: e.Password(), Dbname: e.Db()}
+func createDBConfig() DBConfig {
+	return DBConfig{Host: os.Getenv("SQL_HOST"), Port: os.Getenv("SQL_PORT"), User: os.Getenv("SQL_USER"), Password: os.Getenv("SQL_PASSWORD"), Dbname: os.Getenv("SQL_DB")}
 }
 
 func GetDBConfig() *DBConfig {

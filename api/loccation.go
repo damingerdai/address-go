@@ -1,7 +1,7 @@
 package api
 
 import (
-	service "damingerdai/address/services"
+	service "damingerdai/address/internal/services"
 
 	"github.com/gin-gonic/gin"
 )
