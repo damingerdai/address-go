@@ -16,7 +16,7 @@ func NewRouter() *gin.Engine {
 		v1.GET("ip", api.GetIp)
 		v1.GET("locatoin", api.GetLocation)
 		v1.POST("token", api.CreateToken)
-		v1.GET("provinces", api.ListCities)
+		v1.GET("provinces", api.ListProvinces)
 		v1.GET("province/:id", api.GetProvince)
 		v1.GET("cities", api.ListCities)
 		v1.GET("city/:id", api.GetCity)
