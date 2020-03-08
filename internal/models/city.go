@@ -6,9 +6,9 @@ import (
 )
 
 type City struct {
-	Id     int    `json:"id"`
-	Name   string `json:"name"`
-	CityId int    `json:"cityId"`
+	Id     int    `json:"id" db:"_id"`
+	Name   string `json:"name" db:"name"`
+	CityId int    `json:"cityId" db:"city_id"`
 }
 
 func (city *City) String() string {

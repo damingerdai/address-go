@@ -4,13 +4,40 @@ import (
 	"damingerdai/address/internal/models"
 	"damingerdai/address/internal/utils"
 	jdbc "database/sql"
+
 	"github.com/jmoiron/sqlx"
 )
 
+type CityDao struct {
+	Trx *sqlx.Tx
+}
+
+func (cityDao *CityDao) ListCities() (*[]models.City, error) {
+	result := make([]models.City, 0, 343)
+	schema := "SELECT _id, name, city_id FROM city"
+	err := cityDao.Trx.Select(&result, schema)
+	if err != nil {
+		return &result, utils.If(err != jdbc.ErrNoRows, err, nil).(error)
+	}
+
+	return &result, nil
+}
+
+func (cityDao *CityDao) GetCity(id int64) (*models.City, error) {
+	var result models.City
+	schema := "SELECT _id, name, city_id FROM city WHERE _id = ?"
+	err := cityDao.Trx.Get(&result, schema, id)
+	if err != nil {
+		return &result, utils.If(err != jdbc.ErrNoRows, err, nil).(error)
+	}
+
+	return &result, nil
+}
+
 func ListCities(trx *sqlx.Tx) ([]*models.City, error) {
 	result := make([]*models.City, 0, 343)
-	sql := "SELECT _id, name, city_id FROM city"
-	rows, err := trx.Query(sql)
+	schema := "SELECT _id, name, city_id FROM city"
+	rows, err := trx.Query(schema)
 	if err != nil {
 		return nil, utils.If(err != jdbc.ErrNoRows, err, nil).(error)
 	}
