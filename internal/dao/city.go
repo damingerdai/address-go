@@ -23,7 +23,7 @@ func (cityDao *CityDao) ListCities() (*[]models.City, error) {
 	return &result, nil
 }
 
-func (cityDao *CityDao) GetCity(id int64) (*models.City, error) {
+func (cityDao *CityDao) GetCity(id int) (*models.City, error) {
 	var result models.City
 	schema := "SELECT _id, name, city_id FROM city WHERE _id = ?"
 	err := cityDao.Trx.Get(&result, schema, id)
