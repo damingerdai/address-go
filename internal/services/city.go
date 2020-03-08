@@ -4,14 +4,16 @@ import (
 	"context"
 	"damingerdai/address/internal/dao"
 	"damingerdai/address/internal/models"
+	"strconv"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
-	"strconv"
 )
 
-func ListCities(ctx context.Context) ([]*models.City, error) {
+func ListCities(ctx context.Context) (*[]models.City, error) {
 	trx := ctx.Value("trx").(*sqlx.Tx)
-	cities, err := dao.ListCities(trx)
+	cityDao := dao.CityDao{Trx: trx}
+	cities, err := cityDao.ListCities()
 	if err != nil {
 		return nil, errors.Wrap(err, "fail to get cities")
 	}
