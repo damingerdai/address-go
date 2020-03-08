@@ -26,7 +26,8 @@ func GetCity(ctx context.Context, id string) (*models.City, error) {
 		return nil, err
 	}
 	trx := ctx.Value("trx").(*sqlx.Tx)
-	city, err := dao.GetCity(trx, n)
+	cityDao := dao.CityDao{Trx: trx}
+	city, err := cityDao.GetCity(n)
 	if err != nil {
 		return nil, errors.Wrapf(err, "fail to get city which id is %s", id)
 	}
