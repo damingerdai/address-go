@@ -12,16 +12,17 @@ func TestListCities(t *testing.T) {
 		return
 	}
 	trx := db.MustBegin()
-	cities, err := ListCities(trx)
+	cityDao := CityDao{Trx: trx}
+	cities, err := cityDao.ListCities()
 	if err != nil {
 		trx.Rollback()
 		t.Error(err)
 		return
 	}
-	if len(cities) != 343 {
+	if len(*cities) != 343 {
 		t.Error("no enough cities")
 	}
-	for i, city := range cities {
+	for i, city := range *cities {
 		t.Log(i)
 		t.Log(city)
 		if city.Id != i+1 {
@@ -39,15 +40,16 @@ func BenchmarkListCities(b *testing.B) {
 		return
 	}
 	trx := db.MustBegin()
+	cityDao := CityDao{Trx: trx}
 	for i := 0; i < b.N; i++ {
-		cities, err := ListCities(trx)
+		cities, err := cityDao.ListCities()
 		if err != nil {
 			trx.Rollback()
 			b.Error(err)
 			return
 		}
-		if len(cities) != 343 {
-			b.Errorf("no enough cities: %d", len(cities))
+		if len(*cities) != 343 {
+			b.Errorf("no enough cities: %d", len(*cities))
 		}
 	}
 	trx.Commit()
@@ -60,8 +62,9 @@ func TestGetCity(t *testing.T) {
 		return
 	}
 	trx := db.MustBegin()
+	cityDao := CityDao{Trx: trx}
 	for i := 0; i <= 350; i++ {
-		city, err := GetCity(trx, i)
+		city, err := cityDao.GetCity(i)
 		if err != nil {
 			if err == jdbc.ErrNoRows {
 				t.Log(err)

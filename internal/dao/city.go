@@ -28,7 +28,10 @@ func (cityDao *CityDao) GetCity(id int) (*models.City, error) {
 	schema := "SELECT _id, name, city_id FROM city WHERE _id = ?"
 	err := cityDao.Trx.Get(&result, schema, id)
 	if err != nil {
-		return &result, utils.If(err != jdbc.ErrNoRows, err, nil).(error)
+		if err == jdbc.ErrNoRows {
+			return &result, nil
+		}
+		return nil, err
 	}
 
 	return &result, nil
