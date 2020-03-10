@@ -2,8 +2,39 @@ package dao
 
 import (
 	"damingerdai/address/internal/models"
+	jdbc "database/sql"
+
 	"github.com/jmoiron/sqlx"
 )
+
+type ProvinceDao struct {
+	Trx *sqlx.Tx
+}
+
+func (provinceDao *ProvinceDao) ListProvinces() (*[]models.Province, error) {
+	result := make([]models.Province, 0, 32)
+	schema := "SELECT _id, name, province_id FROM province"
+	err := provinceDao.Trx.Select(&result, schema)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (provinceDao *ProvinceDao) GetProvince(id int) (*models.Province, error) {
+	var result models.Province
+	schema := "SELECT _id, name, province_id FROM province where _id = ?"
+	err := provinceDao.Trx.Get(&result, schema, id)
+	if err != nil {
+		if err == jdbc.ErrNoRows {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	return &result, nil
+}
 
 func ListProvinces(trx *sqlx.Tx) ([]*models.Province, error) {
 	sql := "SELECT _id, name, province_id FROM province"
