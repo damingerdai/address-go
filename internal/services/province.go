@@ -10,9 +10,10 @@ import (
 	"github.com/pkg/errors"
 )
 
-func ListProvince(ctx context.Context) ([]*models.Province, error) {
+func ListProvince(ctx context.Context) (*[]models.Province, error) {
 	trx := ctx.Value("trx").(*sqlx.Tx)
-	provinces, err := dao.ListProvinces(trx)
+	provinceDao := dao.ProvinceDao{ Trx:trx }
+	provinces, err := provinceDao.ListProvinces()
 	if err != nil {
 		return nil, errors.Wrap(err, "fail to get provinces")
 	}
@@ -25,7 +26,8 @@ func GetProvince(ctx context.Context, id string) (*models.Province, error) {
 		return nil, err
 	}
 	trx := ctx.Value("trx").(*sqlx.Tx)
-	province, err := dao.GetProvince(trx, n)
+	provinceDao := dao.ProvinceDao{ Trx:trx }
+	province, err := provinceDao.GetProvince(n)
 	if err != nil {
 		return nil, errors.Wrapf(err, "fail to get the province which id is %s", id)
 	}
