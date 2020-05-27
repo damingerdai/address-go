@@ -4,9 +4,10 @@ import (
 	"damingerdai/address/pkg/routes"
 	"flag"
 	"fmt"
-	"github.com/joho/godotenv"
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 var port = flag.Int("port", 9999, "port")
