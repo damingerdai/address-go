@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "utils",
+    srcs = [
+        "if.go",
+        "snowflake.go",
+        "token.go",
+    ],
+    importpath = "damingerdai/address/internal/utils",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/models",
+        "@com_github_bwmarrin_snowflake//:go_default_library",
+        "@com_github_dgrijalva_jwt_go//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "utils_test",
+    srcs = [
+        "snowflake_test.go",
+        "token_test.go",
+    ],
+    embed = [":utils"],
+    deps = ["//internal/models"],
+)

@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "models",
+    srcs = [
+        "city.go",
+        "location.go",
+        "province.go",
+        "token.go",
+        "user.go",
+    ],
+    importpath = "damingerdai/address/internal/models",
+    visibility = ["//:__subpackages__"],
+)

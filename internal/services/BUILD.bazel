@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "services",
+    srcs = [
+        "city.go",
+        "location.go",
+        "province.go",
+        "token.go",
+        "user.go",
+    ],
+    importpath = "damingerdai/address/internal/services",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/config",
+        "//internal/dao",
+        "//internal/models",
+        "//internal/utils",
+        "@com_github_gin_gonic_gin//:go_default_library",
+        "@com_github_jmoiron_sqlx//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "services_test",
+    srcs = ["token_test.go"],
+    embed = [":services"],
+)

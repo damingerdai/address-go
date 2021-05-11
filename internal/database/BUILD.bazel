@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "database",
+    srcs = [
+        "database.go",
+        "type.go",
+    ],
+    importpath = "damingerdai/address/internal/database",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/config",
+        "@com_github_go_sql_driver_mysql//:go_default_library",
+        "@com_github_jmoiron_sqlx//:go_default_library",
+        "@com_github_lib_pq//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "database_test",
+    srcs = ["database_test.go"],
+    embed = [":database"],
+    deps = ["//internal/config"],
+)
