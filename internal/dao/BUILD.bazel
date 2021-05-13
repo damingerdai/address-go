@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "dao",
+    srcs = [
+        "city.go",
+        "conn.go",
+        "geo.go",
+        "province.go",
+        "user.go",
+    ],
+    importpath = "damingerdai/address/internal/dao",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/models",
+        "//internal/utils",
+        "@com_github_jmoiron_sqlx//:go_default_library",
+        "@com_github_oschwald_geoip2_golang//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "dao_test",
+    srcs = [
+        "city_test.go",
+        "conn_test.go",
+        "province_test.go",
+    ],
+    embed = [":dao"],
+    deps = [
+        "//internal/config",
+        "//internal/database",
+        "@com_github_jmoiron_sqlx//:go_default_library",
+    ],
+)

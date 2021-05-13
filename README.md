@@ -48,6 +48,14 @@ make run
 # Data
 i use this [data source](https://github.com/wecatch/china_regions)
 
+# bazel
+
+```
+ bazel run //:gazelle
+ bazel run //:gazelle -- update-repos -from_file=go.mod
+ bazel build //cmd/address:address
+```
+
 # Roadmap
 
 ## 2019.12.30
