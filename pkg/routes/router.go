@@ -1,14 +1,18 @@
 package routes
 
 import (
+	_ "damingerdai/address/docs"
 	"damingerdai/address/pkg/api"
 	"damingerdai/address/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func NewRouter() *gin.Engine {
 	r := gin.Default()
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	v1 := r.Group("/api/v1")
 	v1.Use(middleware.ValidateToken())
 	{

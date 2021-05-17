@@ -14,5 +14,4 @@ go_binary(
     visibility = ["//visibility:public"],
 )
 
-
 exports_files(["cmd/address"])
