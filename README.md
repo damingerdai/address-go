@@ -32,7 +32,7 @@ docker network create address-networks
 
 run for mysql
 ```bash
-docker-compose up
+docker compose up mysql
 ```
 
 ### Init data
