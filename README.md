@@ -45,6 +45,21 @@ in `data` folder, exec these sql files to init data
 make run
 ```
 
+# Bazel
+
+update repositories
+
+```bash
+bazel run //:gazelle
+bazel run //:gazelle -- update-repos -from_file=go.mod -to_macro=repos.bzl%go_dependencies
+```
+
+build
+
+```
+bazel build //cmd/address:address
+```
+
 # Data
 i use this [data source](https://github.com/wecatch/china_regions)
 
