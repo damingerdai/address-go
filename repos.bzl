@@ -34,8 +34,8 @@ def go_dependencies():
     go_repository(
         name = "com_github_containerd_containerd",
         importpath = "github.com/containerd/containerd",
-        sum = "h1:8lqLbl7u1j3MmiL9cJ/O275crSq7bfwUayvvatEupQk=",
-        version = "v1.2.7",
+        sum = "h1:H0wkS4AbVKTg9vyvBdCBrxoax8AMObKbNz9Fl2N0i4Y=",
+        version = "v1.4.8",
     )
     go_repository(
         name = "com_github_cpuguy83_go_md2man_v2",

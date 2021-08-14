@@ -6,7 +6,7 @@ require (
 	github.com/Microsoft/go-winio v0.4.11 // indirect
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/bwmarrin/snowflake v0.3.0
-	github.com/containerd/containerd v1.2.7 // indirect
+	github.com/containerd/containerd v1.4.8 // indirect
 	github.com/docker/distribution v2.7.0+incompatible // indirect
 	github.com/docker/docker v0.7.3-0.20190817195342-4760db040282 // indirect
 	github.com/docker/go-connections v0.4.0 // indirect
