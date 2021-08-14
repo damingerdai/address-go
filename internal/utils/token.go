@@ -4,7 +4,7 @@ import (
 	"damingerdai/address/internal/models"
 	"fmt"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	jwt "github.com/golang-jwt/jwt"
 )
 
 func CreateToken(user *models.User, secretKey []byte, expiresAt int64) (tokenString string, err error) {

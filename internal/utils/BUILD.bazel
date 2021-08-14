@@ -12,7 +12,7 @@ go_library(
     deps = [
         "//internal/models",
         "@com_github_bwmarrin_snowflake//:go_default_library",
-        "@com_github_dgrijalva_jwt_go//:go_default_library",
+        "@com_github_golang_jwt_jwt//:go_default_library",
     ],
 )
 
