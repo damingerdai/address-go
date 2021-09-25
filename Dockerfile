@@ -1,4 +1,4 @@
-FROM golang:golang:1.17.1-alpine3.14 as build
+FROM golang:1.17.1-alpine3.14 as build
 
 # ENV GOPROXY=https://goproxy.io
 
