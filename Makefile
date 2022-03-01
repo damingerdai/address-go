@@ -25,3 +25,12 @@ docker:
 .PHONY: clean
 clean:
 	rm main || :
+
+bazel-cmd = bazel
+bazel-targets = $(shell bazel query "kind('go_binary', //cmd/...)" --output=label)
+bazel-targets-names := $(foreach n,$(bazel-targets),$(n))
+
+bazel:
+	@$(foreach target,$(shell bazel query "kind('go_binary', //cmd/...)" --output=label),\
+		${bazel-cmd} build ${target} \
+	;)
