@@ -1,6 +1,6 @@
 module damingerdai/address
 
-go 1.17
+go 1.18
 
 require (
 	github.com/Microsoft/go-winio v0.4.11 // indirect
