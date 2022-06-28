@@ -16,9 +16,9 @@ go_library(
         "//internal/dao",
         "//internal/models",
         "//internal/utils",
-        "@com_github_gin_gonic_gin//:go_default_library",
-        "@com_github_jmoiron_sqlx//:go_default_library",
-        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_gin_gonic_gin//:gin",
+        "@com_github_jmoiron_sqlx//:sqlx",
+        "@com_github_pkg_errors//:errors",
     ],
 )
 

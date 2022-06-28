@@ -8,6 +8,6 @@ go_library(
     deps = [
         "//internal/config",
         "//internal/utils",
-        "@com_github_gin_gonic_gin//:go_default_library",
+        "@com_github_gin_gonic_gin//:gin",
     ],
 )

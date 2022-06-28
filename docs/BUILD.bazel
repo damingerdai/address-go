@@ -6,7 +6,7 @@ go_library(
     importpath = "damingerdai/address/docs",
     visibility = ["//visibility:public"],
     deps = [
-        "@com_github_alecthomas_template//:go_default_library",
-        "@com_github_swaggo_swag//:go_default_library",
+        "@com_github_alecthomas_template//:template",
+        "@com_github_swaggo_swag//:swag",
     ],
 )

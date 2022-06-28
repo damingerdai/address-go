@@ -11,8 +11,8 @@ go_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//internal/models",
-        "@com_github_bwmarrin_snowflake//:go_default_library",
-        "@com_github_golang_jwt_jwt//:go_default_library",
+        "@com_github_bwmarrin_snowflake//:snowflake",
+        "@com_github_golang_jwt_jwt//:jwt",
     ],
 )
 
