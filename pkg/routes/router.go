@@ -1,9 +1,9 @@
 package routes
 
 import (
-	_ "damingerdai/address/docs"
-	"damingerdai/address/pkg/api"
-	"damingerdai/address/pkg/middleware"
+	_ "github.com/damingerdai/address-go/docs"
+	"github.com/damingerdai/address-go/pkg/api"
+	"github.com/damingerdai/address-go/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"

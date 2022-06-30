@@ -1,7 +1,7 @@
 package database
 
 import (
-	"damingerdai/address/internal/config"
+	"github.com/damingerdai/address-go/internal/config"
 	"github.com/jmoiron/sqlx"
 	"log"
 	"strings"

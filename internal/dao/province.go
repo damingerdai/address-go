@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"damingerdai/address/internal/models"
 	jdbc "database/sql"
+	"github.com/damingerdai/address-go/internal/models"
 
 	"github.com/jmoiron/sqlx"
 )

@@ -6,7 +6,7 @@ go_library(
         "database.go",
         "type.go",
     ],
-    importpath = "damingerdai/address/internal/database",
+    importpath = "github.com/damingerdai/address-go/internal/database",
     visibility = ["//:__subpackages__"],
     deps = [
         "//internal/config",

@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"damingerdai/address/internal/dao"
-	"damingerdai/address/internal/models"
+	"github.com/damingerdai/address-go/internal/dao"
+	"github.com/damingerdai/address-go/internal/models"
 	"strconv"
 
 	"github.com/jmoiron/sqlx"

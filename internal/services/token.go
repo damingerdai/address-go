@@ -1,9 +1,9 @@
 package service
 
 import (
-	"damingerdai/address/internal/config"
-	"damingerdai/address/internal/models"
-	"damingerdai/address/internal/utils"
+	"github.com/damingerdai/address-go/internal/config"
+	"github.com/damingerdai/address-go/internal/models"
+	"github.com/damingerdai/address-go/internal/utils"
 	"github.com/gin-gonic/gin"
 	"time"
 )

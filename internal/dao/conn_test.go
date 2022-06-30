@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"damingerdai/address/internal/config"
-	"damingerdai/address/internal/database"
+	"github.com/damingerdai/address-go/internal/config"
+	"github.com/damingerdai/address-go/internal/database"
 	"github.com/jmoiron/sqlx"
 	"os"
 	"testing"

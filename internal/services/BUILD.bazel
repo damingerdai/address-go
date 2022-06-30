@@ -9,7 +9,7 @@ go_library(
         "token.go",
         "user.go",
     ],
-    importpath = "damingerdai/address/internal/services",
+    importpath = "github.com/damingerdai/address-go/internal/services",
     visibility = ["//:__subpackages__"],
     deps = [
         "//internal/config",

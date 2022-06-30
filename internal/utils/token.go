@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"damingerdai/address/internal/models"
 	"fmt"
+	"github.com/damingerdai/address-go/internal/models"
 
 	jwt "github.com/golang-jwt/jwt"
 )

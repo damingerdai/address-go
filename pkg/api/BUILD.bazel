@@ -11,7 +11,7 @@ go_library(
         "token.go",
         "user.go",
     ],
-    importpath = "damingerdai/address/pkg/api",
+    importpath = "github.com/damingerdai/address-go/pkg/api",
     visibility = ["//visibility:public"],
     deps = [
         "//internal/config",

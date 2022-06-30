@@ -1,6 +1,6 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
-# gazelle:prefix damingerdai/address
+# gazelle:prefix github.com/damingerdai/address-go
 gazelle(name = "gazelle")
 
 gazelle(

@@ -2,10 +2,10 @@ package service
 
 import (
 	"context"
-	"damingerdai/address/internal/dao"
-	"damingerdai/address/internal/models"
-	"damingerdai/address/internal/utils"
 	"database/sql"
+	"github.com/damingerdai/address-go/internal/dao"
+	"github.com/damingerdai/address-go/internal/models"
+	"github.com/damingerdai/address-go/internal/utils"
 
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"

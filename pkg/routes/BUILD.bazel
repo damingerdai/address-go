@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "routes",
     srcs = ["router.go"],
-    importpath = "damingerdai/address/pkg/routes",
+    importpath = "github.com/damingerdai/address-go/pkg/routes",
     visibility = ["//visibility:public"],
     deps = [
         "//docs",

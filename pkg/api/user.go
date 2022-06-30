@@ -2,10 +2,10 @@ package api
 
 import (
 	"context"
-	"damingerdai/address/internal/config"
-	"damingerdai/address/internal/database"
-	"damingerdai/address/internal/models"
-	service "damingerdai/address/internal/services"
+	"github.com/damingerdai/address-go/internal/config"
+	"github.com/damingerdai/address-go/internal/database"
+	"github.com/damingerdai/address-go/internal/models"
+	service "github.com/damingerdai/address-go/internal/services"
 	"strconv"
 
 	"github.com/gin-gonic/gin"

@@ -1,8 +1,8 @@
 package api
 
 import (
-	"damingerdai/address/internal/models"
-	service "damingerdai/address/internal/services"
+	"github.com/damingerdai/address-go/internal/models"
+	service "github.com/damingerdai/address-go/internal/services"
 	"log"
 	"net/http"
 	"reflect"

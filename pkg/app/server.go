@@ -1,9 +1,9 @@
 package app
 
 import (
-	"damingerdai/address/pkg/routes"
 	"flag"
 	"fmt"
+	"github.com/damingerdai/address-go/pkg/routes"
 	"log"
 	"os"
 

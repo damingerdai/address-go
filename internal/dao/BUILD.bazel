@@ -9,7 +9,7 @@ go_library(
         "province.go",
         "user.go",
     ],
-    importpath = "damingerdai/address/internal/dao",
+    importpath = "github.com/damingerdai/address-go/internal/dao",
     visibility = ["//:__subpackages__"],
     deps = [
         "//internal/models",

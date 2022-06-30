@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 go_library(
     name = "address_lib",
     srcs = ["main.go"],
-    importpath = "damingerdai/address/cmd/address",
+    importpath = "github.com/damingerdai/address-go/cmd/address",
     visibility = ["//visibility:private"],
     deps = ["//pkg/app"],
 )

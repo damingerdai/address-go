@@ -9,6 +9,6 @@ go_library(
         "token.go",
         "user.go",
     ],
-    importpath = "damingerdai/address/internal/models",
+    importpath = "github.com/damingerdai/address-go/internal/models",
     visibility = ["//:__subpackages__"],
 )

@@ -1,7 +1,7 @@
 package database
 
 import (
-	"damingerdai/address/internal/config"
+	"github.com/damingerdai/address-go/internal/config"
 	"testing"
 )
 
@@ -15,7 +15,7 @@ func init() {
 	}
 }
 
-// go test -timeout 30s damingerdai/address/internal/datasource -run TestCreateDataSource -v
+// go test -timeout 30s github.com/damingerdai/address-go/internal/datasource -run TestCreateDataSource -v
 func TestCreateDataSource(t *testing.T) {
 	if conf == nil {
 		t.Error("fail to init conf")

@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "docs",
     srcs = ["docs.go"],
-    importpath = "damingerdai/address/docs",
+    importpath = "github.com/damingerdai/address-go/docs",
     visibility = ["//visibility:public"],
     deps = [
         "@com_github_alecthomas_template//:template",

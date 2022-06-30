@@ -7,7 +7,7 @@ go_library(
         "snowflake.go",
         "token.go",
     ],
-    importpath = "damingerdai/address/internal/utils",
+    importpath = "github.com/damingerdai/address-go/internal/utils",
     visibility = ["//:__subpackages__"],
     deps = [
         "//internal/models",

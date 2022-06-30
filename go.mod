@@ -1,4 +1,4 @@
-module damingerdai/address
+module github.com/damingerdai/address-go
 
 go 1.18
 

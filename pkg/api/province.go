@@ -2,9 +2,9 @@ package api
 
 import (
 	"context"
-	"damingerdai/address/internal/config"
-	"damingerdai/address/internal/database"
-	service "damingerdai/address/internal/services"
+	"github.com/damingerdai/address-go/internal/config"
+	"github.com/damingerdai/address-go/internal/database"
+	service "github.com/damingerdai/address-go/internal/services"
 
 	"github.com/gin-gonic/gin"
 )

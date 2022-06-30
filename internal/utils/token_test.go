@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"damingerdai/address/internal/models"
+	"github.com/damingerdai/address-go/internal/models"
 	"testing"
 	"time"
 )

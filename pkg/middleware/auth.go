@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"damingerdai/address/internal/config"
-	utils "damingerdai/address/internal/utils"
+	"github.com/damingerdai/address-go/internal/config"
+	utils "github.com/damingerdai/address-go/internal/utils"
 )
 
 func ValidateToken() gin.HandlerFunc {
