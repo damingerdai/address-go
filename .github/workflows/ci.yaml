@@ -22,6 +22,6 @@ jobs:
       - name: Download vender
         run: go mod download
       - name: Build
-        run: make run
+        run: make build
       - name: Build with bazel
         run: make bazel
