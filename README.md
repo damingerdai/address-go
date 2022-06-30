@@ -11,7 +11,7 @@ if you want to run this project, these software are required
 
 ## Install
 ```bash
-git clone https://github.com/github.com/damingerdai/address-go.git
+git clone https://github.com/damingerdai/address-go.git
 ```
 
 ## Init
