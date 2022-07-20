@@ -1,4 +1,4 @@
-FROM golang:1.18.3-alpine3.14 as build
+FROM golang:1.18.4-alpine3.15 as build
 
 ENV GOPROXY=https://goproxy.io
 
@@ -8,7 +8,7 @@ WORKDIR /address
 
 RUN go build -o cmd/main cmd/address/main.go
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 ENV GIN_MODE="release"
 
