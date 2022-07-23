@@ -18,7 +18,7 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "https://github.com/github.com/damingerdai/address-go-go",
+        "termsOfService": "https://github.com/github.com/damingerdai/address-go",
         "contact": {},
         "version": "{{.Version}}"
     },
