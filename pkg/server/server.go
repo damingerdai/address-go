@@ -1,11 +1,12 @@
-package app
+package server
 
 import (
 	"flag"
 	"fmt"
-	"github.com/damingerdai/address-go/pkg/routes"
 	"log"
 	"os"
+
+	"github.com/damingerdai/address-go/pkg/routes"
 
 	"github.com/joho/godotenv"
 )

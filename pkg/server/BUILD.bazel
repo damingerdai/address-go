@@ -1,9 +1,9 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
-    name = "app",
+    name = "server",
     srcs = ["server.go"],
-    importpath = "github.com/damingerdai/address-go/pkg/app",
+    importpath = "github.com/damingerdai/address-go/pkg/server",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/routes",
