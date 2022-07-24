@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+
 	"github.com/damingerdai/address-go/internal/config"
 	"github.com/damingerdai/address-go/internal/database"
 	service "github.com/damingerdai/address-go/internal/services"
@@ -15,7 +16,7 @@ func ListProvinces(c *gin.Context) {
 	ctx := context.WithValue(c, "trx", trx)
 	if provinces, err := service.ListProvince(ctx); err != nil {
 		trx.Rollback()
-		c.JSON(500, err)
+		c.JSON(500, err.Error())
 	} else {
 		trx.Commit()
 		c.JSON(200, provinces)
@@ -29,7 +30,7 @@ func GetProvince(c *gin.Context) {
 	ctx := context.WithValue(c, "trx", trx)
 	if province, err := service.GetProvince(ctx, id); err != nil {
 		trx.Rollback()
-		c.JSON(500, err)
+		c.JSON(500, err.Error())
 	} else {
 		trx.Commit()
 		c.JSON(200, province)

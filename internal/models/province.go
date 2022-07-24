@@ -6,9 +6,9 @@ import (
 )
 
 type Province struct {
-	Id         int    `json:"id"`
-	Name       string `json:"name"`
-	ProvinceId int    `json:"provinceId"`
+	Id         int    `json:"id" db:"_id"`
+	Name       string `json:"name" db:"name"`
+	ProvinceId int    `json:"provinceId" db:"province_id"`
 }
 
 func (province *Province) String() string {
