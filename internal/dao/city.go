@@ -2,6 +2,7 @@ package dao
 
 import (
 	jdbc "database/sql"
+
 	"github.com/damingerdai/address-go/internal/models"
 	"github.com/damingerdai/address-go/internal/utils"
 
@@ -17,7 +18,7 @@ func (cityDao *CityDao) ListCities() (*[]models.City, error) {
 	schema := "SELECT _id, name, city_id FROM city"
 	err := cityDao.Trx.Select(&result, schema)
 	if err != nil {
-		return &result, utils.If(err != jdbc.ErrNoRows, err, nil).(error)
+		return &result, utils.If[error](err != jdbc.ErrNoRows, err, nil)
 	}
 
 	return &result, nil

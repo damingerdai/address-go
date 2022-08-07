@@ -1,6 +1,6 @@
 package utils
 
-func If(condition bool, trueVal, falseVal interface{}) interface{} {
+func If[T interface{}](condition bool, trueVal, falseVal T) T {
 	if condition {
 		return trueVal
 	}
