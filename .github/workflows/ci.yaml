@@ -7,7 +7,7 @@ on:
     branches: [master, develop]
 
 jobs:
-  ci:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -33,3 +33,25 @@ jobs:
         run: make build
       - name: Build with bazel
         run: make bazel
+  build-windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        go-version: [ 1.18 ]
+        os: [windows-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go-version }}
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Build with bazel
+        run: bazel build //cmd/address:address && bazel build //cmd/migrate:migrate
