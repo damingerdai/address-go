@@ -4,7 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
+	"time"
 
 	"github.com/damingerdai/address-go/pkg/routes"
 
@@ -20,9 +22,15 @@ func Run() {
 	}
 	flag.Parse()
 	address := fmt.Sprintf(":%d", *port)
-	fmt.Println(address)
+
 	r := routes.NewRouter()
-	err = r.Run(address)
+	s := &http.Server{
+		Addr:         address,
+		Handler:      r,
+		ReadTimeout:  60 * time.Second,
+		WriteTimeout: 60 * time.Second,
+	}
+	err = s.ListenAndServe()
 	if err != nil {
 		fmt.Fprintf(os.Stdout, "error: %v\n", err)
 	} else {
