@@ -921,8 +921,8 @@ def go_dependencies():
     go_repository(
         name = "com_github_gin_gonic_gin",
         importpath = "github.com/gin-gonic/gin",
-        sum = "h1:qC89GU3p8TvKWMAVhEpmpB2CIb1hnqt2UdKZaP93mS8=",
-        version = "v1.7.1",
+        sum = "h1:3DoBmSbJbZAWqXJC3SLjAPfutPJJRN1U5pALB7EeTTs=",
+        version = "v1.7.7",
     )
     go_repository(
         name = "com_github_go_fonts_dejavu",
@@ -2167,8 +2167,8 @@ def go_dependencies():
     go_repository(
         name = "com_github_opencontainers_image_spec",
         importpath = "github.com/opencontainers/image-spec",
-        sum = "h1:9yCKha/T5XdGtO0q9Q9a6T5NUCsTn/DrBg0D7ufOcFM=",
-        version = "v1.0.2",
+        sum = "h1:rc3tiVYb5z54aKaDfakKn0dDjIyPpTtszkjuMzyt7ec=",
+        version = "v1.0.3-0.20211202183452-c5a74bcca799",
     )
     go_repository(
         name = "com_github_opencontainers_runc",
@@ -2596,14 +2596,14 @@ def go_dependencies():
     go_repository(
         name = "com_github_ugorji_go",
         importpath = "github.com/ugorji/go",
-        sum = "h1:tGiWC9HENWE2tqYycIqFTNorMmFRVhNwCpDOpWqnk8E=",
-        version = "v1.2.6",
+        sum = "h1:qYhyWUUd6WbiM+C6JZAUkIJt/1WrjzNHY9+KCIjVqTo=",
+        version = "v1.2.7",
     )
     go_repository(
         name = "com_github_ugorji_go_codec",
         importpath = "github.com/ugorji/go/codec",
-        sum = "h1:7kbGefxLoDBuYXOms4yD7223OpNMMPNPZxXk5TvFcyQ=",
-        version = "v1.2.6",
+        sum = "h1:YPXUKf7fYbp/y8xloBqZOw2qaVggbfwMlI8WM3wZUJ0=",
+        version = "v1.2.7",
     )
     go_repository(
         name = "com_github_urfave_cli",
@@ -3290,8 +3290,8 @@ def go_dependencies():
     go_repository(
         name = "org_golang_x_sys",
         importpath = "golang.org/x/sys",
-        sum = "h1:Fm4IcnUL803i92qDlmB0obyHmosDrxZWxJL3gIeNqOw=",
-        version = "v0.0.0-20220317061510-51cd9980dadf",
+        sum = "h1:ntjMns5wyP/fN65tdBD4g8J5w8n015+iIIs9rtjXkY0=",
+        version = "v0.0.0-20220412211240-33da011f77ad",
     )
     go_repository(
         name = "org_golang_x_term",
