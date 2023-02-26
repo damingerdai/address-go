@@ -53,5 +53,23 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+      - name: Bazel cache
+        id: bazel-cache
+        uses: actions/cache@v2
+        env:
+          version: 4.2.1
+        with:
+          path: | 
+            ~/.cache/bazel
+          key: ${{ runner.os }}-{{ env.version }}-bazel-cache
+      // https://github.com/bytecodealliance/wasmtime-go/blob/main/.github/workflows/main.yml
+      - name: Ready msys2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-x86_64-toolchain
+          path-type: inherit
       - name: Build with bazel
-        run: bazel build //cmd/address:address --verbose_failures && bazel build //cmd/migrate:migrate --verbose_failures
+        shell: msys2 {0}
+        run: bazel build //cmd/address:address --compiler=mingw-gcc --verbose_failures && bazel build //cmd/migrate:migrate --compiler=mingw-gcc --verbose_failures
