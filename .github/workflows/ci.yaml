@@ -54,4 +54,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       - name: Build with bazel
-        run: bazel build //cmd/address:address && bazel build //cmd/migrate:migrate
+        run: bazel build //cmd/address:address --verbose_failures && bazel build //cmd/migrate:migrate --verbose_failures
