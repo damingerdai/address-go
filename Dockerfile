@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine3.17 as build
+FROM golang:1.20.2-alpine3.17 as build
 
 ENV GOPROXY=https://goproxy.cn
 

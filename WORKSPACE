@@ -32,6 +32,6 @@ load("//:deps.bzl", "go_dependencies")
 # gazelle:repository_macro deps.bzl%go_dependencies
 go_dependencies()
 
-go_register_toolchains(version = "1.20")
+go_register_toolchains(version = "1.20.2")
 
 gazelle_dependencies()
