@@ -2,3 +2,4 @@
 test --action_env=GOPROXY=https://goproxy.io
 build --action_env=GOPROXY=https://goproxy.io
 run --action_env=GOPROXY=https://goproxy.io
+try-import %workspace%/.bazelrc.user
