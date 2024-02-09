@@ -16,6 +16,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Server interface {
+	Run() error
+}
+
 var port = flag.Int("port", 9999, "port")
 
 func Run() {
