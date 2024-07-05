@@ -26,6 +26,11 @@ docker:
 clean:
 	rm main || :
 
+gazelle:
+	 bazel run //:gazelle
+gazelle-update-repos:
+	bazel run //:gazelle-update-repos
+
 bazel-cmd = bazel
 bazel-targets = $(shell bazel query "kind('go_binary', //cmd/...)" --output=label)
 bazel-targets-names := $(foreach n,$(bazel-targets),$(n))
